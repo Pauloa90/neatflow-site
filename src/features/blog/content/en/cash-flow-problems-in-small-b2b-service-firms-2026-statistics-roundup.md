@@ -1,7 +1,7 @@
 ---
 title: "Cash flow problems in small B2B service firms: 2026 statistics roundup"
 heroImage:
-  url: "../../../../assets/blog/covers/cash-flow-problems-in-small-b2b-service-firms-2026-statistics-roundup.svg"
+  url: "../../../../assets/blog/covers/cash-flow-problems-in-small-b2b-service-firms-2026-statistics-roundup.jpg"
   alt: "Cash Flow Stats 2026"
 description: "Verified 2024-2026 statistics on cash flow problems in small B2B service firms across Western Europe and the UK. Late payments, DSO trends, and regulatory context."
 pubDate: 2026-05-02

@@ -1,7 +1,7 @@
 ---
 title: "How a 12-person agency recovered €47,000 in overdue invoices in 60 days"
 heroImage:
-  url: "../../../../assets/blog/covers/how-a-12-person-agency-recovered-47000-in-overdue-invoices-in-60-days.svg"
+  url: "../../../../assets/blog/covers/how-a-12-person-agency-recovered-47000-in-overdue-invoices-in-60-days.jpg"
   alt: "Agency Recovery Case Study"
 description: "A composite scenario showing how a small B2B agency installs an AR Recovery System and recovers €47K in 60 days, anchored in verified industry benchmarks."
 pubDate: 2026-05-02

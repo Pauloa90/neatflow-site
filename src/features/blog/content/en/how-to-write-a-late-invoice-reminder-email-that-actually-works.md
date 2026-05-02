@@ -1,7 +1,7 @@
 ---
 title: "How to write a late invoice reminder email that actually works"
 heroImage:
-  url: "../../../../assets/blog/covers/how-to-write-a-late-invoice-reminder-email-that-actually-works.svg"
+  url: "../../../../assets/blog/covers/how-to-write-a-late-invoice-reminder-email-that-actually-works.jpg"
   alt: "Late Invoice Reminders"
 description: "How to write late invoice reminder emails that actually get paid. Cadence, tone-matching by client type, and behavioural science behind what works."
 pubDate: 2026-05-02

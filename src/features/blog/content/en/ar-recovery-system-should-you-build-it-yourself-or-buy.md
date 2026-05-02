@@ -1,7 +1,7 @@
 ---
 title: "AR Recovery System: should you build it yourself or buy?"
 heroImage:
-  url: "../../../../assets/blog/covers/ar-recovery-system-should-you-build-it-yourself-or-buy.svg"
+  url: "../../../../assets/blog/covers/ar-recovery-system-should-you-build-it-yourself-or-buy.jpg"
   alt: "Build vs Buy"
 description: "Build vs buy decision for AR Recovery Systems. Real cost breakdown of DIY automation including hidden time costs, and the failure modes of half-built systems."
 pubDate: 2026-05-02

@@ -1,7 +1,7 @@
 ---
 title: "QuickBooks vs Xero vs FreshBooks for AR in service businesses"
 heroImage:
-  url: "../../../../assets/blog/covers/quickbooks-vs-xero-vs-freshbooks-for-ar-in-service-businesses.svg"
+  url: "../../../../assets/blog/covers/quickbooks-vs-xero-vs-freshbooks-for-ar-in-service-businesses.jpg"
   alt: "QuickBooks vs Xero vs FreshBooks"
 description: "Direct AR-focused comparison of QuickBooks, Xero, and FreshBooks for B2B service firms. Reminder limits, payment portals, automation depth, and where each fails."
 pubDate: 2026-05-02

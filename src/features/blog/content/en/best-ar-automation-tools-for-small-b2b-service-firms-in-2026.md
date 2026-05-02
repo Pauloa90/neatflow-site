@@ -1,7 +1,7 @@
 ---
 title: "Best AR automation tools for small B2B service firms in 2026"
 heroImage:
-  url: "../../../../assets/blog/covers/best-ar-automation-tools-for-small-b2b-service-firms-in-2026.svg"
+  url: "../../../../assets/blog/covers/best-ar-automation-tools-for-small-b2b-service-firms-in-2026.jpg"
   alt: "AR Tools 2026"
 description: "Comparison of leading AR automation tools for 5-30 person B2B service firms, with criteria, ROI, and implementation guidance."
 pubDate: 2026-05-02

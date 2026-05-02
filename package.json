@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/react": "4.3.0",
+    "@astrojs/rss": "^4.0.18",
     "@astrojs/vercel": "^8.1.4",
     "@hookform/resolvers": "^5.0.1",
     "@nanostores/react": "^1.0.0",

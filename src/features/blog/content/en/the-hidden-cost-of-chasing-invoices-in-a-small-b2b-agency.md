@@ -9,7 +9,7 @@ author: "Paulo Albuquerque"
 metaTitle: "The Hidden Cost of Chasing Invoices in Small B2B Agencies"
 metaDescription: "Late invoices cost small B2B firms more than overdue cash. Founder time, team morale, and growth capacity leak quietly. How to measure it with verified data."
 intro: "Most agency owners track overdue receivables as a number on the AR aging report. That number is the smallest part of what late payments actually cost. The bigger costs are invisible because they don't show up on a balance sheet. This article breaks down where the money actually goes and how to measure it."
-tags: []
+tags: ["cash flow", "AR automation", "operations"]
 isDraft: false
 faqs:
   - question: "What's the typical hidden cost of late invoices for a small agency?"

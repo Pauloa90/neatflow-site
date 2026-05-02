@@ -9,7 +9,7 @@ author: "Paulo Albuquerque"
 metaTitle: "Cash Flow Problems in Small B2B Firms: 2026 Statistics Roundup"
 metaDescription: "Verified 2024-2026 statistics on cash flow problems in small B2B service firms. Late payments, DSO trends, regulatory context, and what the data means."
 intro: "If you run a small B2B service firm, you already feel the cash flow pressure. This roundup gives you the numbers to back up that feeling, in a format you can cite when making decisions. Every figure comes from publicly available studies published between 2024 and 2026, with sources named inline."
-tags: []
+tags: ["cash flow", "research", "stats"]
 isDraft: false
 faqs:
   - question: "What percentage of B2B invoices are paid late in 2026?"

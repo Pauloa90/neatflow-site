@@ -9,7 +9,7 @@ author: "Paulo Albuquerque"
 metaTitle: "AR Recovery System: Build vs Buy Decision (2026)"
 metaDescription: "Should you build your own AR Recovery System with n8n/Zapier or buy productized service? Real cost breakdown including hidden time costs and failure modes."
 intro: "If you can build automations — n8n, Zapier, Make, custom Python — should you build your own AR Recovery System? The answer most consultants give is 'buy' because they're selling. The answer most engineers give is 'build' because they like building. Both are wrong as universal answers. This post is the honest framework."
-tags: []
+tags: ["AR automation", "build vs buy", "decision-making"]
 isDraft: false
 faqs:
   - question: "What's the realistic cost of building an AR system in-house with n8n or Make?"

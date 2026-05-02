@@ -9,7 +9,7 @@ author: "Paulo Albuquerque"
 metaTitle: "AR Automation for IT Services & MSPs: 2026 Buyer's Guide"
 metaDescription: "AR automation for MSPs and IT service firms in 2026. Why generic AR tools fail, what PSA-native features matter, and how to evaluate the stack."
 intro: "Most AR automation content is written for generic B2B service firms. MSPs and IT service providers don't fit that mold cleanly, and using generic tools usually means hitting walls within 6-12 months of growth. This is a buyer's guide for MSP owners evaluating AR automation, focused on what actually matters for this vertical."
-tags: []
+tags: ["AR automation", "tooling", "MSP"]
 isDraft: false
 faqs:
   - question: "Why do MSPs need AR automation beyond what their PSA and accounting tools provide?"

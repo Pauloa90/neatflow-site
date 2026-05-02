@@ -9,6 +9,8 @@ import { Toaster } from 'sonner';
 type Props = {
   pageTitle: string;
   pageDescription?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
 };
 
 export type NavItem = {
@@ -16,7 +18,13 @@ export type NavItem = {
   label: string;
 };
 
-const { pageTitle, pageDescription } = Astro.props;
+const { pageTitle, pageDescription, ogImage, ogType = 'website' } = Astro.props;
+const description = pageDescription || tSite('description');
+const siteOrigin = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const ogImageUrl = ogImage
+  ? (ogImage.startsWith('http') ? ogImage : `${siteOrigin}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`)
+  : `${siteOrigin}/og-default.svg`;
+const canonicalUrl = `${siteOrigin}${Astro.url.pathname}`;
 const lang =
   (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
 
@@ -36,11 +44,21 @@ const navItems: Array<NavItem> = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content={pageDescription || tSite('description')}
-    />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="Paulo Albuquerque — RSS" href="/rss.xml" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={pageTitle || tSite('title')} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content="Paulo Albuquerque" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle || tSite('title')} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <script is:inline>
       const getInitialTheme = () => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {

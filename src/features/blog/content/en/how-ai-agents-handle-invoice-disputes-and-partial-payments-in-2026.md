@@ -9,7 +9,7 @@ author: "Paulo Albuquerque"
 metaTitle: "How AI Agents Handle Invoice Disputes & Partial Payments (2026)"
 metaDescription: "How AI agents handle invoice disputes, partial payments, and cash application in 2026. The state of the art, current limits, and what still needs human judgement."
 intro: "The AR automation conversation in 2026 has moved past basic reminders. The interesting question now is how AI agents handle the messy edge cases — disputes, partial payments, deductions, multi-invoice payments. These cases are 10-20% of invoice volume but consume 60%+ of AR team time."
-tags: []
+tags: ["AI agents", "AR automation", "disputes"]
 isDraft: false
 faqs:
   - question: "How do AI agents detect when an email is a dispute vs a routine query?"

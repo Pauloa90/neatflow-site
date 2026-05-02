@@ -9,7 +9,7 @@ author: "Paulo Albuquerque"
 metaTitle: "QuickBooks vs Xero vs FreshBooks for AR (2026 Comparison)"
 metaDescription: "Direct AR-focused comparison of QuickBooks, Xero, and FreshBooks for B2B service firms. Reminder limits, payment portals, automation depth, and where each fails."
 intro: "There are dozens of QuickBooks vs Xero vs FreshBooks articles online. Most cover invoicing, expense tracking, time tracking, and inventory, treating AR as a sub-feature. This one only looks at AR. Specifically: how each platform handles overdue invoice management, reminder automation, late fees, payment portals, and dunning workflows for 5-30 person B2B service firms."
-tags: []
+tags: ["accounting", "tooling", "comparison"]
 isDraft: false
 faqs:
   - question: "Which platform has the strongest built-in AR automation?"

@@ -38,11 +38,21 @@ const recent = enriched.slice(0, 5);
     <div class="flex flex-col-reverse md:flex-row md:items-center gap-8 md:gap-12">
       <div class="flex-1">
         <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-          {t('heroGreeting')}
+          Hi, I'm Paulo
         </h1>
-        <p class="text-lg text-muted-foreground leading-relaxed">
-          {t('heroTagline')}
+        <p class="text-lg text-muted-foreground leading-relaxed mb-4">
+          I'm a senior support engineer in Dublin who spent the last decade
+          fixing systems for companies you've heard of. Now I'm building
+          automations on the side for the small businesses you haven't.
         </p>
+        <p class="text-lg text-muted-foreground leading-relaxed">
+          I write here about what I learn while doing it — what works, what
+          wastes time, and what most "AI for business" advice gets wrong. New
+          post every week or two.
+        </p>
+        <a href="#recent-posts" class="text-sm underline mt-4 inline-block">
+          Read latest ↓
+        </a>
       </div>
       <div class="shrink-0">
         <Image
@@ -56,7 +66,7 @@ const recent = enriched.slice(0, 5);
     </div>
   </section>
 
-  <section class="max-w-3xl mx-auto py-8">
+  <section id="recent-posts" class="max-w-3xl mx-auto py-8 scroll-mt-20">
     <h2 class="text-2xl font-semibold mb-6">{t('recentPostsTitle')}</h2>
     <ul class="space-y-6">
       {

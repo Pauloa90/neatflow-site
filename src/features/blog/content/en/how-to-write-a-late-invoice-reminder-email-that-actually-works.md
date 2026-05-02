@@ -9,7 +9,7 @@ author: "Paulo Albuquerque"
 metaTitle: "Late Invoice Reminder Email: Cadence, Tone & Templates That Work"
 metaDescription: "How to write late invoice reminder emails that get paid. Cadence, tone-matching by client type, behavioural science, and templates for B2B service firms."
 intro: "Search 'late invoice reminder email' and you get the same article fifty times: be polite, then firmer, then mention legal action. Five templates to copy-paste. This post covers what those guides skip — the cadence, the relationship, and the behavioural mechanics behind why some emails get acted on and others get ignored."
-tags: []
+tags: ["AR automation", "writing", "email"]
 isDraft: false
 faqs:
   - question: "How many late invoice reminder emails should I send before escalating?"

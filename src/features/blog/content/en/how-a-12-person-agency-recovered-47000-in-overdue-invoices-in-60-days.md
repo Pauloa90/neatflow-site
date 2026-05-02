@@ -9,7 +9,7 @@ author: "Paulo Albuquerque"
 metaTitle: "Case Study: €47k in Overdue Invoices Recovered in 60 Days"
 metaDescription: "How a 12-person B2B agency recovered €47,000 in overdue invoices in 60 days using an AR Recovery System. Composite scenario with verified industry benchmarks."
 intro: "This case study is composite, not a real named client. Every number, sequence, and outcome is built from documented case studies of small firms that adopted structured AR workflows. If you run a 5 to 30-person service agency, the mechanics here mirror what an AR Recovery System installation actually looks like."
-tags: []
+tags: ["case study", "AR automation", "agency"]
 isDraft: false
 faqs:
   - question: "Is recovering €47,000 in 60 days realistic for a 12-person agency?"

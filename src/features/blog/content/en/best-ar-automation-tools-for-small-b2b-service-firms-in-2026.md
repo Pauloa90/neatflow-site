@@ -9,7 +9,7 @@ author: "Paulo Albuquerque"
 metaTitle: "Best AR Automation Tools for Small B2B Service Firms (2026)"
 metaDescription: "Compare the best AR automation tools for small B2B service firms in 2026. Cut chase time, recover invoices faster, and pick what fits your stack."
 intro: "Small B2B service firms should shortlist AR tools that automate reminders, offer self-service payment portals, integrate with Xero or QuickBooks, and give real-time invoice status. In 2026, the strongest options for 5 to 30-person agencies are productized AR services like NeatFlow, mid-market AR suites such as Quadient AR and Versapay, plus core AR modules inside accounting platforms."
-tags: []
+tags: ["AR automation", "tooling", "comparison"]
 isDraft: false
 faqs:
   - question: "What is AR automation for small service firms?"

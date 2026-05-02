@@ -9,7 +9,7 @@ author: "Paulo Albuquerque"
 metaTitle: "Hire an AR Clerk or Automate AR? 2026 Decision Framework"
 metaDescription: "When to hire an AR clerk versus automate accounts receivable. Salary benchmarks for Dublin, London, Berlin, plus the volume threshold where each makes sense."
 intro: "For a 5 to 30-person B2B service firm hitting growth, the moment comes when AR can no longer be 'founder on Friday afternoons'. The choice splits in two: hire someone, or systematise. Most content treats this as binary. It isn't. The real answer is a function of invoice volume, complexity, and the local cost of an AR specialist where you operate."
-tags: []
+tags: ["hiring vs automation", "AR automation", "decision-making"]
 isDraft: false
 faqs:
   - question: "At what invoice volume should I consider hiring an AR clerk?"

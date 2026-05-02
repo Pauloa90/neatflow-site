@@ -1,6 +1,14 @@
 # Learnings — 2 May 2026: Framer → Astro Migration
 
-## Summary
+> **Status:** partially reconstructed by Claude Code from observable signals
+> (commits, scripts, build outputs). Paulo should review to confirm timeline
+> and specific details. Sections tagged `[AI-RECONSTRUCTED]` are paraphrases
+> based on session evidence, not verbatim quotes. Sections tagged
+> `[PAULO-DICTATED]` are pasted from his original message verbatim.
+> Sections without a tag mix both — usually a Paulo-given heading with
+> AI-elaborated body.
+
+## Summary  `[PAULO-DICTATED]`
 
 Migrated NeatFlow site from Framer (Archio template) to Astro
 (bakate/astro-theme-starter) in a single ~7h session. Site went
@@ -8,7 +16,7 @@ from "tweaked template still looking like a portfolio of fictional
 consultancy" to a clean, content-first personal blog deployed on
 Netlify with €0/month hosting.
 
-## Final stack
+## Final stack  `[PAULO-DICTATED]`
 
 - **Framework:** Astro 5.8.1
 - **Styling:** Tailwind CSS v4 + shadcn/ui (template defaults)
@@ -18,7 +26,7 @@ Netlify with €0/month hosting.
 - **Domain:** myneatflow.com (DNS swap pendente)
 - **Cost:** €0/month (vs €20-30/mo Framer Pro — savings ~€300/year)
 
-## What worked
+## What worked  `[items 1-4 PAULO-DICTATED, items 5-7 AI-RECONSTRUCTED]`
 
 1. **Astro template selection (bakate/astro-theme-starter):**
    - Personal portfolio + bilingual blog out of the box
@@ -69,7 +77,7 @@ Netlify with €0/month hosting.
 
 ## What failed (and the lessons)
 
-### Failure 1: Framer ComponentInstances are opaque to API
+### Failure 1: Framer ComponentInstances are opaque to API  `[PAULO-DICTATED]`
 
 5+ hours spent trying to surgically remove sections from Archio
 template via Framer Server API. Net progress: -6 nodes of 1248
@@ -87,7 +95,7 @@ are hostile to programmatic customization. If you can't see the
 DOM, don't try to surgically edit it. Either use the visual editor
 manually OR rebuild from scratch in a code-first framework.
 
-### Failure 2: PowerShell echo writes empty/UTF-16 files
+### Failure 2: PowerShell echo writes empty/UTF-16 files  `[heading PAULO-DICTATED, body AI-RECONSTRUCTED — original message truncated mid-sentence at "Use:"]`
 
 `echo "x" > file` in PowerShell can produce an empty file or a
 UTF-16 BOM file (Windows PowerShell 5.1 default encoding is
@@ -103,7 +111,7 @@ Build tools (Vite, Astro, esbuild) silently mis-parse UTF-16 BOM
 files as binary or produce confusing errors ("Unexpected character
 '\\uFEFF'"). The fix is always at the write step, not the read step.
 
-### Failure 3: Framer `addItems` rejects untyped fieldData entries
+### Failure 3: Framer `addItems` rejects untyped fieldData entries  `[AI-RECONSTRUCTED]`
 
 Original `seed_posts.js` used `{ value: "x" }` without a `type`
 discriminator, hoping Framer would infer from the field schema. The
@@ -127,7 +135,7 @@ Confirmed working shape per field type (from `index.d.ts`):
 the discriminator field is mandatory. Don't try to omit it for
 brevity. Read the typings before writing the payload.
 
-### Failure 4: Framer breakpoint multiplier (×3 nodes per logical text)
+### Failure 4: Framer breakpoint multiplier (×3 nodes per logical text)  `[AI-RECONSTRUCTED]`
 
 A single visible piece of text on a Framer page exists as N TextNodes
 (one per breakpoint: Desktop / Tablet / Mobile, sometimes plus
@@ -143,7 +151,7 @@ edited 3 (Component variant propagation). Phase B `find` instead of
 saved us. **Lesson:** assume N-multiplier for every page-level
 mutation; design loops, not single-shots.
 
-### Failure 5: Section LCA via fingerprints fails when text is in components
+### Failure 5: Section LCA via fingerprints fails when text is in components  `[AI-RECONSTRUCTED]`
 
 Bloco 2 of `apply_phase_b.js` tried to identify section parents
 via Lowest Common Ancestor of identifying-text TextNode IDs (e.g.,
@@ -161,7 +169,7 @@ templates that lean on shared components. To do this properly you
 need (a) component instance descent or (b) human-in-loop ID picking.
 Heuristic structural removal is the wrong abstraction.
 
-### Failure 6: Astro MDX is strict about embedded HTML / strikethrough
+### Failure 6: Astro MDX is strict about embedded HTML / strikethrough  `[AI-RECONSTRUCTED]`
 
 The Framer formattedText export returned a long single-line HTML
 blob for at least one post. MDX's parser choked with:
@@ -182,7 +190,7 @@ are just text + HTML, plain `.md` is faster, more permissive, and
 less surprising. Reach for `.mdx` only when you actually import
 components inline.
 
-### Failure 7: Astro content schema strictness (heroImage required)
+### Failure 7: Astro content schema strictness (heroImage required)  `[AI-RECONSTRUCTED]`
 
 The template schema required `heroImage: { url: image(), alt: string }`
 as non-optional. Migrated Framer posts had no images — build would
@@ -196,7 +204,7 @@ provide before importing data. Zod `.optional()` + `.default()` is
 the cheap fix. Don't try to fabricate hero images at migration time
 just to satisfy the schema.
 
-## Tools that paid for themselves this session
+## Tools that paid for themselves this session  `[AI-RECONSTRUCTED]`
 
 - **`npm install --legacy-peer-deps`**: heavy templates often have
   peer dep mismatches (React 19 vs older deps). `--legacy-peer-deps`
@@ -212,7 +220,7 @@ just to satisfy the schema.
   costs per question. Save snapshots before mutations; query them
   locally afterward.
 
-## Recommendations for future sessions
+## Recommendations for future sessions  `[AI-RECONSTRUCTED]`
 
 1. **Default to code-first for personal sites.** Visual builders
    (Framer, Webflow) are excellent for client work where the client
@@ -246,7 +254,7 @@ just to satisfy the schema.
    `data-netlify="true"` + hidden `form-name` field, point `action`
    at a static success page. Total cost: 0.
 
-## Files of interest in the migration repo
+## Files of interest in the migration repo  `[AI-RECONSTRUCTED]`
 
 In `C:\Users\paulo\neatflow-blog-api\` (the Framer-side helper repo):
 
@@ -270,7 +278,7 @@ In `C:\Users\paulo\neatflow-site\` (the live Astro site):
   immutable cache for `_astro/`
 - `.npmrc` — `legacy-peer-deps=true` (required for Netlify build)
 
-## Migration completion checklist
+## Migration completion checklist  `[AI-RECONSTRUCTED]`
 
 - [x] Export 10 posts from Framer to local MDX (defensive)
 - [x] Astro project clone + npm install

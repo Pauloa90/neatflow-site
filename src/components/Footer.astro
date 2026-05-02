@@ -1,0 +1,13 @@
+---
+import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
+
+const lang =
+  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
+const tFooter = useTranslations(lang, 'footer');
+---
+
+<footer class="py-6 mt-auto text-center text-sm text-muted-foreground border-t">
+  <div class="container mx-auto px-4">
+    {tFooter('copyright')}
+  </div>
+</footer>

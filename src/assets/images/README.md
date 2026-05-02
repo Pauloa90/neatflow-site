@@ -1,11 +1,10 @@
 # images/
 
-**paulo.svg** is a placeholder showing the initials "PA" on a neutral gradient.
+**paulo.jpg** — real photo of Paulo Albuquerque, used in the hero of
+`/` (home) and the header of `/about`.
 
-Replace it with a real photo of Paulo:
+Imported as an Astro asset via `astro:assets` `Image` component, which
+generates optimized variants (webp, multiple densities) at build time.
 
-- 400x400 minimum, square aspect ratio
-- JPG (preferred) or PNG
-- Neutral / professional expression
-- Update references in `src/pages/about.astro` and `src/pages/index.astro`
-  if you save the new file under a different name.
+To swap the photo: replace `paulo.jpg` keeping the same filename, run
+`npm run build`, commit, push.

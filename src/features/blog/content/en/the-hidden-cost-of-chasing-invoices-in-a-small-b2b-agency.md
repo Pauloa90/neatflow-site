@@ -1,5 +1,8 @@
 ---
 title: "The hidden cost of chasing invoices in a small B2B agency"
+heroImage:
+  url: "../../../../assets/blog/covers/the-hidden-cost-of-chasing-invoices-in-a-small-b2b-agency.svg"
+  alt: "Hidden Cost of Chasing Invoices"
 description: "Late invoices cost small B2B firms 2-4× the value of overdue cash. Founder time, decisions delayed, team morale, and client relationships leak quietly."
 pubDate: 2026-05-02
 author: "Paulo Albuquerque"

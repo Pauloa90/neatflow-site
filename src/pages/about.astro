@@ -1,18 +1,34 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import pauloUrl from '@/assets/images/paulo.svg?url';
 ---
 
-<BaseLayout pageTitle="About — Paulo Albuquerque" pageDescription="About Paulo Albuquerque, senior engineer based in Dublin.">
-  <article class="max-w-3xl mx-auto py-12 prose prose-neutral dark:prose-invert">
-    <h1>About</h1>
-    <p>I'm Paulo, a senior engineer based in Dublin, originally from Brazil.</p>
-    <p>
-      I write about AI workflows, automation, and reducing friction in everyday
-      work for small businesses. This site is where my experiments and notes end up.
-    </p>
-    <p>
-      You can reach me at
-      <a href="mailto:paulo@myneatflow.com">paulo@myneatflow.com</a>.
-    </p>
+<BaseLayout
+  pageTitle="About — Paulo Albuquerque"
+  pageDescription="About Paulo Albuquerque, senior engineer based in Dublin."
+>
+  <article class="max-w-3xl mx-auto py-12">
+    <header class="flex items-center gap-6 mb-10">
+      <img
+        src={pauloUrl}
+        alt="Paulo Albuquerque"
+        class="w-24 h-24 rounded-full object-cover border"
+        width="96"
+        height="96"
+      />
+      <h1 class="text-4xl font-bold tracking-tight">About</h1>
+    </header>
+    <div class="prose prose-neutral dark:prose-invert max-w-none">
+      <p>I'm Paulo, a senior engineer based in Dublin, originally from Brazil.</p>
+      <p>
+        I write about AI workflows, automation, and reducing friction in
+        everyday work for small businesses. This site is where my experiments
+        and notes end up.
+      </p>
+      <p>
+        You can reach me at
+        <a href="mailto:paulo@myneatflow.com">paulo@myneatflow.com</a>.
+      </p>
+    </div>
   </article>
 </BaseLayout>

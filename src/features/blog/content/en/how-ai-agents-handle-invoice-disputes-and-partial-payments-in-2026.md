@@ -1,5 +1,8 @@
 ---
 title: "How AI agents handle invoice disputes and partial payments in 2026"
+heroImage:
+  url: "../../../../assets/blog/covers/how-ai-agents-handle-invoice-disputes-and-partial-payments-in-2026.svg"
+  alt: "AI Agents & Disputes"
 description: "How AI agents handle invoice disputes, partial payments, and cash application in 2026. The state of the art, current limits, and what still needs human judgement."
 pubDate: 2026-05-02
 author: "Paulo Albuquerque"

@@ -1,0 +1,77 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  pageTitle="Get in touch — Paulo Albuquerque"
+  pageDescription="Get in touch with Paulo Albuquerque."
+>
+  <article class="max-w-2xl mx-auto py-12">
+    <h1 class="text-4xl font-bold tracking-tight mb-6">Get in touch</h1>
+    <p class="text-muted-foreground leading-relaxed mb-6">
+      Best way to reach me is via email below. I read every email and reply
+      within 1-2 days.
+    </p>
+    <p class="text-lg mb-12">
+      <a
+        href="mailto:paulo@myneatflow.com"
+        class="text-primary hover:underline font-medium"
+      >
+        paulo@myneatflow.com
+      </a>
+    </p>
+
+    <div class="border-t pt-10">
+      <h2 class="text-xl font-semibold mb-2">Or send a message</h2>
+      <p class="text-sm text-muted-foreground mb-6">
+        Same inbox, just less typing on your side.
+      </p>
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/contact-success"
+        class="space-y-4"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden">
+          <label
+            >Don't fill this out:
+            <input name="bot-field" />
+          </label>
+        </p>
+        <div>
+          <label for="email" class="block text-sm font-medium mb-1">
+            Your email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+          />
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-medium mb-1">
+            Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows="5"
+            class="w-full rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring resize-y"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="rounded-md bg-primary text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
+        >
+          Send
+        </button>
+      </form>
+    </div>
+  </article>
+</BaseLayout>

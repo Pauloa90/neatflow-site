@@ -1,5 +1,8 @@
 ---
 title: "When to hire an AR clerk vs automate accounts receivable"
+heroImage:
+  url: "../../../../assets/blog/covers/when-to-hire-an-ar-clerk-vs-automate-accounts-receivable.svg"
+  alt: "Hire vs Automate"
 description: "When to hire an AR clerk versus automate accounts receivable. Salary benchmarks for Dublin, London, Berlin, plus the volume threshold where each makes sense."
 pubDate: 2026-05-02
 author: "Paulo Albuquerque"

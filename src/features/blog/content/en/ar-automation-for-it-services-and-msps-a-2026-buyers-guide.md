@@ -1,5 +1,8 @@
 ---
 title: "AR automation for IT services and MSPs: a 2026 buyer's guide"
+heroImage:
+  url: "../../../../assets/blog/covers/ar-automation-for-it-services-and-msps-a-2026-buyers-guide.svg"
+  alt: "AR Automation for MSPs"
 description: "AR automation for MSPs and IT services in 2026. Why generic tools fail this vertical, what PSA-native features matter, and how to evaluate the stack."
 pubDate: 2026-05-02
 author: "Paulo Albuquerque"

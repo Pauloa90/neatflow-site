@@ -18,6 +18,7 @@ export const ui = {
       home: 'Home',
       blog: 'Blog',
       about: 'About',
+      contact: 'Contact',
     },
     footer: {
       rights: 'All rights reserved.',

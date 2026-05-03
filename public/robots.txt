@@ -20,4 +20,7 @@ Allow: /
 User-agent: anthropic-ai
 Allow: /
 
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://myneatflow.com/sitemap-index.xml

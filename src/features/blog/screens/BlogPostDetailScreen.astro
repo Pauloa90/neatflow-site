@@ -55,16 +55,10 @@ const blogPostingSchema = {
   description: post.description,
   image: absoluteHeroImageUrl,
   datePublished: pubDate.toISOString(),
-  ...(updatedDate ? { dateModified: updatedDate.toISOString() } : {}),
-  author: {
-    '@type': 'Person',
-    name: 'Paulo Albuquerque',
-    url: siteOrigin,
-  },
-  mainEntityOfPage: {
-    '@type': 'WebPage',
-    '@id': canonicalUrl,
-  },
+  dateModified: (updatedDate ?? pubDate).toISOString(),
+  author: { '@id': 'https://myneatflow.com/#paulo' },
+  publisher: { '@id': 'https://myneatflow.com/#organization' },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
   ...(post.tags && post.tags.length > 0 ? { keywords: post.tags.join(', ') } : {}),
 };
 ---

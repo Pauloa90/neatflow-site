@@ -48,6 +48,49 @@ const navItems: Array<NavItem> = [
   { href: '/about', label: tNav('about') },
   { href: '/contact', label: tNav('contact') },
 ];
+
+const siteGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': 'https://myneatflow.com/#organization',
+      name: 'NeatFlow',
+      url: 'https://myneatflow.com',
+      logo: 'https://myneatflow.com/favicons/light-mode/web-app-manifest-512x512.png',
+      founder: { '@id': 'https://myneatflow.com/#paulo' },
+      sameAs: [
+        'https://github.com/Pauloa90',
+        'https://www.instagram.com/pauloandre90/',
+      ],
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://myneatflow.com/#paulo',
+      name: 'Paulo Albuquerque',
+      url: 'https://myneatflow.com/about',
+      jobTitle: 'Founder',
+      worksFor: { '@id': 'https://myneatflow.com/#organization' },
+      knowsAbout: [
+        'AI automation',
+        'n8n workflows',
+        'Smart billing reminders',
+        'Business process automation',
+      ],
+      sameAs: [
+        'https://github.com/Pauloa90',
+        'https://www.linkedin.com/in/paulo-albuquerque-2a56673b/',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://myneatflow.com/#website',
+      url: 'https://myneatflow.com',
+      name: 'NeatFlow',
+      publisher: { '@id': 'https://myneatflow.com/#organization' },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -56,6 +99,8 @@ const navItems: Array<NavItem> = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="google-site-verification" content="Okah5bP5KxbmeIFZycXb6kVm630GBmOTmkQtVl5ChfI" />
+    <meta name="msvalidate.01" content="411D2AD8A2FDC51ED895EAF8CA56CD41" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title="Paulo Albuquerque — RSS" href="/rss.xml" />
@@ -79,6 +124,7 @@ const navItems: Array<NavItem> = [
     {ogType === 'article' && (
       <meta property="article:author" content={author || 'Paulo Albuquerque'} />
     )}
+    <script type="application/ld+json" set:html={JSON.stringify(siteGraph)} />
     <slot name="head" />
     <script is:inline>
       const getInitialTheme = () => {

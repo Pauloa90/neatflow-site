@@ -1,0 +1,43 @@
+# Paulo Albuquerque
+
+> Senior engineer based in Dublin, originally from Brazil. Building AI workflows and automations for small businesses.
+
+Paulo Albuquerque writes about AI workflows, automation, and reducing friction in everyday operations for small businesses. His blog at myneatflow.com documents experiments and learnings from building NeatFlow, an AR automation tool for small B2B service firms.
+
+## Background
+
+- Senior support engineer at a major SaaS company
+- Located in Dublin, Ireland
+- Brazilian, based in Ireland since 2015
+- Background: enterprise SaaS support, APIs, integrations, data flows
+- Building tools with: n8n, Claude API, Airtable, Astro, TypeScript
+
+## Topics covered
+
+The blog focuses on:
+- AR (Accounts Receivable) automation for small B2B service firms
+- Cash flow problems in small businesses
+- AI agents for finance operations
+- Build vs buy decisions for automation
+- Practical AI workflow implementation
+- Tool comparisons (QuickBooks, Xero, FreshBooks, n8n, Make)
+
+## Key blog posts
+
+- AR automation for IT services and MSPs: a 2026 buyer's guide [/blog/ar-automation-for-it-services-and-msps-a-2026-buyers-guide]
+- AR Recovery System: should you build it yourself or buy? [/blog/ar-recovery-system-should-you-build-it-yourself-or-buy]
+- Best AR automation tools for small B2B service firms in 2026 [/blog/best-ar-automation-tools-for-small-b2b-service-firms-in-2026]
+- Cash flow problems in small B2B service firms: 2026 statistics roundup [/blog/cash-flow-problems-in-small-b2b-service-firms-2026-statistics-roundup]
+- How a 12-person agency recovered €47,000 in overdue invoices in 60 days [/blog/how-a-12-person-agency-recovered-47000-in-overdue-invoices-in-60-days]
+- How AI agents handle invoice disputes and partial payments in 2026 [/blog/how-ai-agents-handle-invoice-disputes-and-partial-payments-in-2026]
+- How to write a late invoice reminder email that actually works [/blog/how-to-write-a-late-invoice-reminder-email-that-actually-works]
+- QuickBooks vs Xero vs FreshBooks for AR in service businesses [/blog/quickbooks-vs-xero-vs-freshbooks-for-ar-in-service-businesses]
+- The hidden cost of chasing invoices in a small B2B agency [/blog/the-hidden-cost-of-chasing-invoices-in-a-small-b2b-agency]
+- When to hire an AR clerk vs automate accounts receivable [/blog/when-to-hire-an-ar-clerk-vs-automate-accounts-receivable]
+
+## Contact
+
+Email: paulo@myneatflow.com
+LinkedIn: https://www.linkedin.com/in/paulo-albuquerque-2a56673b/
+GitHub: https://github.com/Pauloa90
+RSS feed: /rss.xml

@@ -34,9 +34,55 @@ const t = useTranslations(lang, 'blogPost');
 
 const pageTitle = post.title;
 const pageDescription = post.description;
+
+const siteOrigin = Astro.site?.toString().replace(/\/$/, '') ?? '';
+const canonicalUrl = `${siteOrigin}${Astro.url.pathname}`;
+const heroImageUrl = post.heroImage?.url
+  ? (typeof post.heroImage.url === 'string'
+      ? post.heroImage.url
+      : (post.heroImage.url as { src: string }).src)
+  : undefined;
+const absoluteHeroImageUrl = heroImageUrl
+  ? heroImageUrl.startsWith('http')
+    ? heroImageUrl
+    : `${siteOrigin}${heroImageUrl.startsWith('/') ? '' : '/'}${heroImageUrl}`
+  : `${siteOrigin}/og-default.svg`;
+
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.description,
+  image: absoluteHeroImageUrl,
+  datePublished: pubDate.toISOString(),
+  ...(updatedDate ? { dateModified: updatedDate.toISOString() } : {}),
+  author: {
+    '@type': 'Person',
+    name: 'Paulo Albuquerque',
+    url: siteOrigin,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalUrl,
+  },
+  ...(post.tags && post.tags.length > 0 ? { keywords: post.tags.join(', ') } : {}),
+};
 ---
 
-<BaseLayout {pageTitle} {pageDescription}>
+<BaseLayout
+  {pageTitle}
+  {pageDescription}
+  ogType="article"
+  ogImage={heroImageUrl}
+  publishedTime={pubDate.toISOString()}
+  modifiedTime={updatedDate ? updatedDate.toISOString() : undefined}
+  author="Paulo Albuquerque"
+>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(blogPostingSchema)}
+    slot="head"
+  />
   <article class="container mx-auto px-4 py-8 md:py-12 max-w-3xl">
     <a
       href={getRelativeLocaleUrl(lang, '/blog')}

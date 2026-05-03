@@ -71,26 +71,16 @@ const pageDescription = t('pageDescription');
       class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8"
     >
       {
-        posts.length > 0 ? (
-          posts.map((postEntry) => (
-            <div class="blog-post-card-wrapper" data-post-id={postEntry.id}>
-              <BlogPostCard post={postEntry} lang={lang} />
-            </div>
-          ))
-        ) : (
-          <EmptyState
-            title={texts('noPostsFound')}
-            id="no-posts-initial-message"
-            className="hidden"
-          />
-        )
+        posts.map((postEntry) => (
+          <div class="blog-post-card-wrapper" data-post-id={postEntry.id}>
+            <BlogPostCard post={postEntry} lang={lang} />
+          </div>
+        ))
       }
     </div>
-    <EmptyState
-      title={texts('noPostsFound')}
-      id="no-posts-filtered-message"
-      className="hidden"
-    />
+    <div id="no-posts-filtered-message" hidden>
+      <EmptyState title={texts('noPostsFound')} />
+    </div>
 
     <script>
       import {
@@ -99,12 +89,9 @@ const pageDescription = t('pageDescription');
       } from '../../../stores/blogFilterStore';
 
       const postsContainer = document.getElementById('blog-posts-container');
-      const noPostsInitialMessage = document.getElementById(
-        'no-posts-initial-message'
-      );
       const noPostsFilteredMessage = document.getElementById(
         'no-posts-filtered-message'
-      );
+      ) as HTMLElement | null;
       const allPostCardWrappers = document.querySelectorAll(
         '.blog-post-card-wrapper'
       );
@@ -118,31 +105,20 @@ const pageDescription = t('pageDescription');
 
         allPostCardWrappers.forEach((wrapper) => {
           const postIdAttribute = wrapper.getAttribute('data-post-id');
-          if (postIdAttribute !== null) {
-            // Now postIdAttribute is definitely a string
-            if (currentFilteredIds.includes(postIdAttribute)) {
-              wrapper.classList.remove('hidden');
-              visibleCount++;
-            } else {
-              wrapper.classList.add('hidden');
-            }
-          } else {
-            // If postIdAttribute is null (e.g., element doesn't have the attribute), ensure it's hidden.
-            wrapper.classList.add('hidden');
-          }
+          const matches =
+            postIdAttribute !== null &&
+            currentFilteredIds.includes(postIdAttribute);
+          (wrapper as HTMLElement).hidden = !matches;
+          if (matches) visibleCount++;
         });
-
-        if (noPostsInitialMessage) {
-          noPostsInitialMessage.classList.add('hidden'); // Hide initial message when posts are filtered
-        }
 
         if (isFiltersInitialized) {
           if (visibleCount === 0) {
             postsContainer.style.display = 'none';
-            noPostsFilteredMessage.classList.remove('hidden');
+            noPostsFilteredMessage.hidden = false;
           } else {
             postsContainer.style.display = 'grid';
-            noPostsFilteredMessage.classList.add('hidden');
+            noPostsFilteredMessage.hidden = true;
           }
         }
       }

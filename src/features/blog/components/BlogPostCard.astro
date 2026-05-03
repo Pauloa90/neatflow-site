@@ -23,10 +23,11 @@ interface Props {
 
 const { post, lang } = Astro.props;
 const t = useTranslations(lang, 'blogPost');
+const slug = post.id.replace(/^en\//, '').replace(/\.(md|mdx)$/, '');
 ---
 
 <a
-  href={getRelativeLocaleUrl(lang, `/blog/${post.id}`)}
+  href={getRelativeLocaleUrl(lang, `/blog/${slug}`)}
   class="block group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 >
   <Card

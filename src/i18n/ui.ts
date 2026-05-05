@@ -12,7 +12,7 @@ export const ui = {
       title: 'Paulo Albuquerque — Notes on AI workflows',
       name: 'Paulo Albuquerque',
       description:
-        'Senior engineer based in Dublin. Notes on AI workflows, automation, and reducing friction in everyday work.',
+        'Engineer in Dublin who likes building automations that genuinely help people — small businesses, side projects, and the small frictions of everyday life.',
     },
     nav: {
       home: 'Home',
@@ -27,10 +27,10 @@ export const ui = {
     homePage: {
       pageTitle: 'Paulo Albuquerque — Notes on AI workflows',
       pageDescription:
-        'Senior engineer based in Dublin. Notes on AI workflows, automation, and reducing friction in everyday work.',
+        'Engineer in Dublin who likes building automations that genuinely help people — small businesses, side projects, and the small frictions of everyday life.',
       heroGreeting: "Hi, I'm Paulo",
       heroTagline:
-        "Senior engineer based in Dublin. I write about AI workflows, automation, and how small businesses can reduce friction in everyday work. Notes from what I'm exploring end up below.",
+        "I'm an engineer in Dublin who likes playing with automation — figuring out which pieces actually help people, in their small businesses and in their day-to-day. I write down what I learn here.",
       recentPostsTitle: 'Recent posts',
       readMore: 'Read post',
       seeAllPosts: 'See all posts',

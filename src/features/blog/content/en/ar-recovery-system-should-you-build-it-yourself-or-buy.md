@@ -23,7 +23,161 @@ lang: "en"
 
 If you can build automations — n8n, Zapier, Make, custom Python — should you build your own AR Recovery System? The answer most consultants give is 'buy' because they're selling. The answer most engineers give is 'build' because they like building. Both are wrong as universal answers. This post is the honest framework.
 
-<h2 dir="auto">The question every technical founder asks</h2><p dir="auto">If you can build automations — n8n, Zapier, Make, custom Python — should you build your own AR Recovery System? The answer most consultants give is "buy" because they're selling. The answer most engineers give is "build" because they like building. Both are wrong as universal answers.</p><p dir="auto">This post is the honest framework. Written for owner-operators of 5 to 30-person B2B service firms with technical capability in-house. Sources at the end.</p><h2 dir="auto">The three options on the table</h2><p dir="auto">AR Recovery Systems come in three shapes:</p><ul dir="auto"><li data-preset-tag="p"><p><strong>DIY low-code:</strong> n8n, Zapier, Make, or custom scripts wired into Xero/QuickBooks + Gmail + Slack</p></li><li data-preset-tag="p"><p><strong>SaaS:</strong> Chaser, Satago, Yooz, similar — layered on top of accounting platform, configured but not built</p></li><li data-preset-tag="p"><p><strong>Productized service:</strong> AR Recovery System installed by someone like NeatFlow as a one-time build, customized to your specifics, you own the resulting system</p></li></ul><p dir="auto">Each has a cost profile, time cost, failure mode, and ceiling. Real numbers below.</p><h2 dir="auto">True cost of DIY low-code</h2><h3 dir="auto">What you pay in tools</h3><p dir="auto">Very low. n8n self-hosted is free; n8n Cloud Starter is around €20-25/month. Zapier or Make at the volume of a small agency is €30-100/month depending on complexity. Plus the existing cost of your accounting platform.</p><p dir="auto">Total monthly tooling: typically €30-150 for DIY.</p><h3 dir="auto">What you pay in time</h3><p dir="auto">This is where DIY gets expensive. Realistic ranges for a competent technical founder:</p><ul dir="auto"><li data-preset-tag="p"><p><strong>Initial build:</strong> 30-60 hours over 2-4 weeks. This includes mapping the cadence logic, building the workflow, testing edge cases, integrating with accounting + email + Slack, and writing the dispute detection.</p></li><li data-preset-tag="p"><p><strong>Ongoing maintenance:</strong> 2-5 hours per month. API credentials expire. Webhook endpoints break. New edge cases surface. Vendors change rate limits.</p></li><li data-preset-tag="p"><p><strong>Time to debug failures:</strong> unpredictable. When a workflow silently stops sending reminders, you discover it 2 weeks later when AR is suddenly worse. Catching it fast requires monitoring you also have to build.</p></li></ul><p dir="auto">At €150/hour effective founder rate, the initial build alone is €4,500-9,000 of opportunity cost. Add 24-60 hours/year of maintenance: another €3,600-9,000.</p><p dir="auto"><strong>True Year 1 cost of DIY: €5,000-12,000</strong> — most of which is your time, not visible in tooling spend.</p><h3 dir="auto">Failure modes nobody warns you about</h3><p dir="auto">Three DIY failure modes are well-documented in automation communities:</p><p dir="auto"><strong>Silent failures.</strong> A reminder workflow stops triggering because Xero's API auth expired. You don't notice for 2-3 weeks. By the time you fix it, you've lost the AR discipline you were trying to build. This pattern is common enough that it's the single most-cited reason DIY systems fail.</p><p dir="auto"><strong>Edge case explosion.</strong> Your initial build handles 95% of cases. The 5% — partial payments, disputes that look like reminders, currency mismatches, retries on bounced emails — eat 60% of your maintenance time. You either ignore them (degrades quality) or build forever.</p><p dir="auto"><strong>Bus factor of one.</strong> You built it. You're the only person who understands it. When you go on holiday, take parental leave, or get hit by a project deadline, AR quality drops because nobody else can fix the workflow when something breaks.</p><h2 dir="auto">True cost of SaaS</h2><h3 dir="auto">What you pay in tools</h3><p dir="auto">Dedicated AR SaaS for SMB ranges €200-500/month. ResolvePay, Chaser, Satago, Yooz are typical. Most charge per invoice volume or per user.</p><h3 dir="auto">What you pay in time</h3><p dir="auto">Low. Implementation is typically 1-2 weeks of part-time setup (20-30 hours), most of it configuration not building. ProcIndex's 2026 AR Automation Guide reports SaaS implementations of 4-8 weeks for mid-market firms; for SMB-grade tools, 1-2 weeks is realistic.</p><p dir="auto">Maintenance after launch is minimal — the vendor handles API breakage, edge cases, and updates.</p><h3 dir="auto">Failure modes</h3><p dir="auto"><strong>Vendor lock-in (mild).</strong> AR SaaS sits on top of your accounting platform; your invoice data lives in QuickBooks/Xero, not the SaaS. Exit cost is low.</p><p dir="auto"><strong>Configuration ceiling.</strong> Most SMB AR SaaS gives you 5-7 reminder stages, basic tone customization, simple escalation. If you need bespoke logic (different cadence per client tier, multi-language reminders, dispute-specific routing), you'll hit a wall.</p><p dir="auto"><strong>Cost compounds.</strong> At €300/month for 36 months you've spent €10,800. Compare to a one-time build at €2,000-4,000.</p><h2 dir="auto">True cost of productized service</h2><h3 dir="auto">What you pay</h3><p dir="auto">One-time setup €1,500-2,500 for an AR Recovery System at the standard NeatFlow tier. Optional ongoing optimization at €0-500/month depending on changes needed.</p><p dir="auto">Unlike SaaS, you OWN the resulting system. Built on your accounting platform's API + n8n or similar, it's yours to keep, modify, or migrate.</p><h3 dir="auto">What you pay in time</h3><p dir="auto">Minimal. The service provider handles 90% of the build. You provide: list of clients with payment behaviour patterns, your accounting platform credentials, your tone preferences, and 1-2 hours of feedback during the build.</p><h3 dir="auto">Failure modes</h3><p dir="auto"><strong>Quality of provider matters.</strong> If the provider builds badly, you inherit a brittle system. Vet for production case studies, ongoing support, and ownership transfer.</p><p dir="auto"><strong>Less customization than DIY.</strong> A productized service hits 80-90% of what custom DIY can do, in 1/10th the time.</p><h2 dir="auto">The honest decision framework</h2><h3 dir="auto">When DIY genuinely makes sense</h3><p dir="auto">Three conditions, ALL must be true:</p><ul dir="auto"><li data-preset-tag="p"><p>You have <strong>20+ hours/month</strong> of guaranteed maintenance capacity for the next 12+ months</p></li><li data-preset-tag="p"><p>Your AR workflow is <strong>simple enough</strong> to build cleanly (single payment terms, single currency, low dispute rate)</p></li><li data-preset-tag="p"><p>You <strong>enjoy building automation</strong> (because if you don't, the maintenance burden compounds with resentment)</p></li></ul><p dir="auto">If any of these is uncertain, DIY breaks down within 6-9 months.</p><h3 dir="auto">When SaaS makes sense</h3><p dir="auto">Two conditions:</p><ul dir="auto"><li data-preset-tag="p"><p>Volume is <strong>stable and predictable</strong> (50-300 invoices/month range that won't 5x in 12 months)</p></li><li data-preset-tag="p"><p>Your AR needs fit within the SaaS feature set (you're willing to live with their cadence + tone constraints)</p></li></ul><p dir="auto">The €200-500/month becomes a fixed cost you can ignore. Operationally simplest of the three.</p><h3 dir="auto">When productized service makes sense</h3><p dir="auto">Three conditions, ANY of which is enough:</p><ul dir="auto"><li data-preset-tag="p"><p>You don't have technical capacity to maintain DIY but want a custom system</p></li><li data-preset-tag="p"><p>Your AR has unusual requirements (specific tone per client tier, EU-language reminders, complex dispute routing)</p></li><li data-preset-tag="p"><p>You want one-time spend, no recurring SaaS bill</p></li></ul><p dir="auto">This is the sweet spot for many small agencies — get a custom system without the maintenance burden of DIY.</p><h2 dir="auto">The math at typical sizes</h2><p dir="auto">For a 12-person agency, 80 invoices/month, 35% paid late:</p><ul dir="auto"><li data-preset-tag="p"><p><strong>DIY Year 1 cost:</strong> €5,000-12,000 (mostly time)</p></li><li data-preset-tag="p"><p><strong>DIY Year 3 cost:</strong> €11,000-30,000 cumulative</p></li><li data-preset-tag="p"><p><strong>SaaS Year 1 cost:</strong> €2,400-6,000 + 30 hours config</p></li><li data-preset-tag="p"><p><strong>SaaS Year 3 cost:</strong> €7,200-18,000 cumulative</p></li><li data-preset-tag="p"><p><strong>Productized Year 1 cost:</strong> €1,500-2,500 + €0-6,000 optimization</p></li><li data-preset-tag="p"><p><strong>Productized Year 3 cost:</strong> €1,500-12,500 cumulative</p></li></ul><p dir="auto">At this size, productized service is the cheapest over 3 years AND the lowest time cost. SaaS is simplest. DIY is most flexible but most expensive when you account for time.</p><h2 dir="auto">The thing nobody talks about: handover risk</h2><p dir="auto">If you sell the agency, hire a CFO, or want to step back from AR, what happens?</p><ul dir="auto"><li data-preset-tag="p"><p>DIY: lives in your head. New finance lead has to reverse-engineer or rebuild.</p></li><li data-preset-tag="p"><p>SaaS: documented, but vendor-specific. Migration to another tool is its own project.</p></li><li data-preset-tag="p"><p>Productized: documented, owned by the business, transferable like any other internal system.</p></li></ul><p dir="auto">For founders thinking 3+ years ahead, this matters more than the year-one cost.</p><h2 dir="auto">What to do this week</h2><p dir="auto">If you're under 50 invoices/month with simple AR: SaaS or DIY both work, choose the one that fits your temperament.</p><p dir="auto">If you're 50-200 invoices/month: get a productized AR Recovery System. The cost-to-value math is unmatched at this volume.</p><p dir="auto">If you're over 200 invoices/month: either productized + part-time AR person (hybrid), or full SaaS at the higher tier (€500+/month).</p><p dir="auto">For more on the volume thresholds and salary tradeoffs, see <a href="/blog/when-to-hire-an-ar-clerk-vs-automate-accounts-receivable">when to hire an AR clerk vs automate</a>. For the underlying tooling comparison, see <a href="/blog/best-ar-automation-tools-for-small-b2b-service-firms-in-2026">the AR tools roundup</a>.</p><h2 dir="auto">Sources</h2><ul dir="auto"><li data-preset-tag="p"><p>ProcIndex 2026 AR Automation Guide (implementation timelines)</p></li><li data-preset-tag="p"><p>Gaviti build-vs-buy AR analysis (cost ranges)</p></li><li data-preset-tag="p"><p>n8n and Make community case studies on DIY AR workflows</p></li><li data-preset-tag="p"><p>ResolvePay 2026 statistics roundup</p></li><li data-preset-tag="p"><p>Common DIY automation failure mode patterns documented in n8n / Make / Zapier communities</p></li></ul>
+## The question every technical founder asks
+
+If you can build automations — n8n, Zapier, Make, custom Python — should you build your own AR Recovery System? The answer most consultants give is "buy" because they're selling. The answer most engineers give is "build" because they like building. Both are wrong as universal answers.
+
+This post is the honest framework. Written for owner-operators of 5 to 30-person B2B service firms with technical capability in-house. Sources at the end.
+
+## The three options on the table
+
+AR Recovery Systems come in three shapes:
+
+- **DIY low-code:** n8n, Zapier, Make, or custom scripts wired into Xero/QuickBooks + Gmail + Slack
+- **SaaS:** Chaser, Satago, Yooz, similar — layered on top of accounting platform, configured but not built
+- **Productized service:** AR Recovery System installed by someone like NeatFlow as a one-time build, customized to your specifics, you own the resulting system
+
+Each has a cost profile, time cost, failure mode, and ceiling. Real numbers below.
+
+## True cost of DIY low-code
+
+### What you pay in tools
+
+Very low. n8n self-hosted is free; n8n Cloud Starter is around €20-25/month. Zapier or Make at the volume of a small agency is €30-100/month depending on complexity. Plus the existing cost of your accounting platform.
+
+Total monthly tooling: typically €30-150 for DIY.
+
+### What you pay in time
+
+This is where DIY gets expensive. Realistic ranges for a competent technical founder:
+
+- **Initial build:** 30-60 hours over 2-4 weeks. This includes mapping the cadence logic, building the workflow, testing edge cases, integrating with accounting + email + Slack, and writing the dispute detection.
+- **Ongoing maintenance:** 2-5 hours per month. API credentials expire. Webhook endpoints break. New edge cases surface. Vendors change rate limits.
+- **Time to debug failures:** unpredictable. When a workflow silently stops sending reminders, you discover it 2 weeks later when AR is suddenly worse. Catching it fast requires monitoring you also have to build.
+
+At €150/hour effective founder rate, the initial build alone is €4,500-9,000 of opportunity cost. Add 24-60 hours/year of maintenance: another €3,600-9,000.
+
+**True Year 1 cost of DIY: €5,000-12,000** — most of which is your time, not visible in tooling spend.
+
+### Failure modes nobody warns you about
+
+Three DIY failure modes are well-documented in automation communities:
+
+**Silent failures.** A reminder workflow stops triggering because Xero's API auth expired. You don't notice for 2-3 weeks. By the time you fix it, you've lost the AR discipline you were trying to build. This pattern is common enough that it's the single most-cited reason DIY systems fail.
+
+**Edge case explosion.** Your initial build handles 95% of cases. The 5% — partial payments, disputes that look like reminders, currency mismatches, retries on bounced emails — eat 60% of your maintenance time. You either ignore them (degrades quality) or build forever.
+
+**Bus factor of one.** You built it. You're the only person who understands it. When you go on holiday, take parental leave, or get hit by a project deadline, AR quality drops because nobody else can fix the workflow when something breaks.
+
+## True cost of SaaS
+
+### What you pay in tools
+
+Dedicated AR SaaS for SMB ranges €200-500/month. ResolvePay, Chaser, Satago, Yooz are typical. Most charge per invoice volume or per user.
+
+### What you pay in time
+
+Low. Implementation is typically 1-2 weeks of part-time setup (20-30 hours), most of it configuration not building. ProcIndex's 2026 AR Automation Guide reports SaaS implementations of 4-8 weeks for mid-market firms; for SMB-grade tools, 1-2 weeks is realistic.
+
+Maintenance after launch is minimal — the vendor handles API breakage, edge cases, and updates.
+
+### Failure modes
+
+**Vendor lock-in (mild).** AR SaaS sits on top of your accounting platform; your invoice data lives in QuickBooks/Xero, not the SaaS. Exit cost is low.
+
+**Configuration ceiling.** Most SMB AR SaaS gives you 5-7 reminder stages, basic tone customization, simple escalation. If you need bespoke logic (different cadence per client tier, multi-language reminders, dispute-specific routing), you'll hit a wall.
+
+**Cost compounds.** At €300/month for 36 months you've spent €10,800. Compare to a one-time build at €2,000-4,000.
+
+## True cost of productized service
+
+### What you pay
+
+One-time setup €1,500-2,500 for an AR Recovery System at the standard NeatFlow tier. Optional ongoing optimization at €0-500/month depending on changes needed.
+
+Unlike SaaS, you OWN the resulting system. Built on your accounting platform's API + n8n or similar, it's yours to keep, modify, or migrate.
+
+### What you pay in time
+
+Minimal. The service provider handles 90% of the build. You provide: list of clients with payment behaviour patterns, your accounting platform credentials, your tone preferences, and 1-2 hours of feedback during the build.
+
+### Failure modes
+
+**Quality of provider matters.** If the provider builds badly, you inherit a brittle system. Vet for production case studies, ongoing support, and ownership transfer.
+
+**Less customization than DIY.** A productized service hits 80-90% of what custom DIY can do, in 1/10th the time.
+
+## The honest decision framework
+
+### When DIY genuinely makes sense
+
+Three conditions, ALL must be true:
+
+- You have **20+ hours/month** of guaranteed maintenance capacity for the next 12+ months
+- Your AR workflow is **simple enough** to build cleanly (single payment terms, single currency, low dispute rate)
+- You **enjoy building automation** (because if you don't, the maintenance burden compounds with resentment)
+
+If any of these is uncertain, DIY breaks down within 6-9 months.
+
+### When SaaS makes sense
+
+Two conditions:
+
+- Volume is **stable and predictable** (50-300 invoices/month range that won't 5x in 12 months)
+- Your AR needs fit within the SaaS feature set (you're willing to live with their cadence + tone constraints)
+
+The €200-500/month becomes a fixed cost you can ignore. Operationally simplest of the three.
+
+### When productized service makes sense
+
+Three conditions, ANY of which is enough:
+
+- You don't have technical capacity to maintain DIY but want a custom system
+- Your AR has unusual requirements (specific tone per client tier, EU-language reminders, complex dispute routing)
+- You want one-time spend, no recurring SaaS bill
+
+This is the sweet spot for many small agencies — get a custom system without the maintenance burden of DIY.
+
+## The math at typical sizes
+
+For a 12-person agency, 80 invoices/month, 35% paid late:
+
+- **DIY Year 1 cost:** €5,000-12,000 (mostly time)
+- **DIY Year 3 cost:** €11,000-30,000 cumulative
+- **SaaS Year 1 cost:** €2,400-6,000 + 30 hours config
+- **SaaS Year 3 cost:** €7,200-18,000 cumulative
+- **Productized Year 1 cost:** €1,500-2,500 + €0-6,000 optimization
+- **Productized Year 3 cost:** €1,500-12,500 cumulative
+
+At this size, productized service is the cheapest over 3 years AND the lowest time cost. SaaS is simplest. DIY is most flexible but most expensive when you account for time.
+
+## The thing nobody talks about: handover risk
+
+If you sell the agency, hire a CFO, or want to step back from AR, what happens?
+
+- DIY: lives in your head. New finance lead has to reverse-engineer or rebuild.
+- SaaS: documented, but vendor-specific. Migration to another tool is its own project.
+- Productized: documented, owned by the business, transferable like any other internal system.
+
+For founders thinking 3+ years ahead, this matters more than the year-one cost.
+
+## What to do this week
+
+If you're under 50 invoices/month with simple AR: SaaS or DIY both work, choose the one that fits your temperament.
+
+If you're 50-200 invoices/month: get a productized AR Recovery System. The cost-to-value math is unmatched at this volume.
+
+If you're over 200 invoices/month: either productized + part-time AR person (hybrid), or full SaaS at the higher tier (€500+/month).
+
+For more on the volume thresholds and salary tradeoffs, see [when to hire an AR clerk vs automate](/blog/when-to-hire-an-ar-clerk-vs-automate-accounts-receivable). For the underlying tooling comparison, see [the AR tools roundup](/blog/best-ar-automation-tools-for-small-b2b-service-firms-in-2026).
+
+## Sources
+
+- ProcIndex 2026 AR Automation Guide (implementation timelines)
+- Gaviti build-vs-buy AR analysis (cost ranges)
+- n8n and Make community case studies on DIY AR workflows
+- ResolvePay 2026 statistics roundup
+- Common DIY automation failure mode patterns documented in n8n / Make / Zapier communities
 
 ## FAQ
 

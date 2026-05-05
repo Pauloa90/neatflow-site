@@ -30,17 +30,18 @@ const {
   modifiedTime,
   author,
 } = Astro.props;
+const lang =
+  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
+
+const tSite = useTranslations(lang, 'site');
+const tNav = useTranslations(lang, 'nav');
+
 const description = pageDescription || tSite('description');
 const siteOrigin = Astro.site?.toString().replace(/\/$/, '') ?? '';
 const ogImageUrl = ogImage
   ? (ogImage.startsWith('http') ? ogImage : `${siteOrigin}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`)
   : `${siteOrigin}/og-default.svg`;
 const canonicalUrl = `${siteOrigin}${Astro.url.pathname}`;
-const lang =
-  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
-
-const tSite = useTranslations(lang, 'site');
-const tNav = useTranslations(lang, 'nav');
 
 const navItems: Array<NavItem> = [
   { href: '/', label: tNav('home') },

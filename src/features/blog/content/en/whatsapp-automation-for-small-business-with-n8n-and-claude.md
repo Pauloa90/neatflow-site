@@ -1,5 +1,8 @@
 ---
 title: "WhatsApp automation for small business with n8n and Claude: a 2026 setup that actually works"
+heroImage:
+  url: "../../../../assets/blog/covers/whatsapp-automation-for-small-business-with-n8n-and-claude.jpg"
+  alt: "Smartphone displaying WhatsApp logo on a wooden surface"
 description: "How to set up a WhatsApp Business automation for a small service firm using n8n and Claude. What it takes, where it breaks, and why most chatbot guides get the architecture wrong."
 pubDate: 2026-05-05
 author: "Paulo Albuquerque"

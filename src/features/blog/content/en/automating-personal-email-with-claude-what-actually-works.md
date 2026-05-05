@@ -1,5 +1,8 @@
 ---
 title: "Automating personal email with Claude: what actually works in 2026"
+heroImage:
+  url: "../../../../assets/blog/covers/automating-personal-email-with-claude-what-actually-works.jpg"
+  alt: "Laptop showing email inbox next to a green plant"
 description: "An honest look at automating a personal Gmail inbox with Claude — what saves real time, what looks impressive but isn't worth the setup, and the failure modes nobody warns you about."
 pubDate: 2026-05-05
 author: "Paulo Albuquerque"

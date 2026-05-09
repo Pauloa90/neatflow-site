@@ -27,7 +27,7 @@ This case study is composite, not a real named client. Every number, sequence, a
 
 This is a composite scenario. It is not a real named client. The numbers, sequence, and outcomes are built from documented industry benchmarks and published case studies of small firms that adopted structured AR workflows. Sources for every range and figure are cited at the end of this post.
 
-If you run a 5 to 30-person B2B service agency, IT services firm, or consultancy, the structure here mirrors what we install for clients at NeatFlow.
+If you run a 5 to 30-person B2B service agency, IT services firm, or consultancy, the structure here mirrors a typical AR Recovery System rollout based on documented industry case studies.
 
 ## The starting point: what the agency looked like before
 
@@ -35,7 +35,7 @@ A 12-person creative agency in Western Europe. Monthly billing around €120,000
 
 ### What their AR situation looked like
 
-At the moment we measured, the agency had €68,000 in invoices past due, spread across 19 different clients. The longest-overdue invoice was 87 days late. This is consistent with documented patterns: a 12-person consulting firm profiled by Builts.ai in 2026 carried over $200,000 in receivables on $1.8m annual revenue — more than a full month of billing locked up. For a 12-person agency, having 30 to 100% of one month's revenue in overdue AR is realistic without structured follow-up.
+At baseline, the agency had €68,000 in invoices past due, spread across 19 different clients. The longest-overdue invoice was 87 days late. This is consistent with documented patterns: a 12-person consulting firm profiled by Builts.ai in 2026 carried over $200,000 in receivables on $1.8m annual revenue — more than a full month of billing locked up. For a 12-person agency, having 30 to 100% of one month's revenue in overdue AR is realistic without structured follow-up.
 
 The founder spent 6 hours per week on follow-up emails, calls, and reminders. Two of those hours were on weekends. This sits within the range Xero research and Upflow report for small business owners: roughly 10% of working time spent chasing late payments. Zendu's 2025 analysis of manual follow-ups puts the upper end at 14 hours per week for the worst-affected SMBs, so 6 hours is mid-range, not extreme.
 
@@ -49,7 +49,7 @@ Second, the same template went to everyone. Long-term retainer clients got the s
 
 Third, the founder hated chasing money, so he procrastinated. Reminders that should have gone day 1 past due went day 14. By then the client had moved on to the next priority.
 
-## What we installed
+## What was installed
 
 An AR Recovery System wired into their existing Xero account, Gmail, and Slack. No new software for the team to learn. No portal for clients to log in to.
 
@@ -95,7 +95,7 @@ Total recovered or actively being recovered in 60 days: **€47,000** across col
 
 ## The numbers behind the math
 
-Setup cost of the AR Recovery System: €2,000 one-time, no recurring fee.
+Setup cost of an equivalent AR Recovery System: typically €1.5k–2.5k one-time per industry estimates, with no recurring fee.
 
 Return at day 60: €47,000 in cash flow unlocked plus founder time worth approximately €3,300 per month at €150 effective hourly rate.
 

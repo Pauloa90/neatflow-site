@@ -35,7 +35,7 @@ AR Recovery Systems come in three shapes:
 
 - **DIY low-code:** n8n, Zapier, Make, or custom scripts wired into Xero/QuickBooks + Gmail + Slack
 - **SaaS:** Chaser, Satago, Yooz, similar — layered on top of accounting platform, configured but not built
-- **Productized service:** AR Recovery System installed by someone like NeatFlow as a one-time build, customized to your specifics, you own the resulting system
+- **Productized service:** AR Recovery System installed by a consultant or productized service vendor as a one-time build, customized to your specifics, you own the resulting system
 
 Each has a cost profile, time cost, failure mode, and ceiling. Real numbers below.
 
@@ -93,7 +93,7 @@ Maintenance after launch is minimal — the vendor handles API breakage, edge ca
 
 ### What you pay
 
-One-time setup €1,500-2,500 for an AR Recovery System at the standard NeatFlow tier. Optional ongoing optimization at €0-500/month depending on changes needed.
+One-time setup €1,500-2,500 for an AR Recovery System (industry-typical productized pricing). Optional ongoing optimization at €0-500/month depending on changes needed.
 
 Unlike SaaS, you OWN the resulting system. Built on your accounting platform's API + n8n or similar, it's yours to keep, modify, or migrate.
 

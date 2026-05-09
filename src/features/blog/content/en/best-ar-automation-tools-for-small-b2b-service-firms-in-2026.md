@@ -8,7 +8,7 @@ pubDate: 2026-05-02
 author: "Paulo Albuquerque"
 metaTitle: "Best AR Automation Tools for Small B2B Service Firms (2026)"
 metaDescription: "Compare the best AR automation tools for small B2B service firms in 2026. Cut chase time, recover invoices faster, and pick what fits your stack."
-intro: "Small B2B service firms should shortlist AR tools that automate reminders, offer self-service payment portals, integrate with Xero or QuickBooks, and give real-time invoice status. In 2026, the strongest options for 5 to 30-person agencies are productized AR services like NeatFlow, mid-market AR suites such as Quadient AR and Versapay, plus core AR modules inside accounting platforms."
+intro: "Small B2B service firms should shortlist AR tools that automate reminders, offer self-service payment portals, integrate with Xero or QuickBooks, and give real-time invoice status. In 2026, the strongest options for 5 to 30-person agencies are productized AR services, mid-market AR suites such as Quadient AR and Versapay, plus core AR modules inside accounting platforms."
 tags: ["AR automation", "tooling", "comparison"]
 isDraft: false
 faqs:
@@ -21,7 +21,7 @@ faqs:
 lang: "en"
 ---
 
-Small B2B service firms should shortlist AR tools that automate reminders, offer self-service payment portals, integrate with Xero or QuickBooks, and give real-time invoice status. In 2026, the strongest options for 5 to 30-person agencies are productized AR services like NeatFlow, mid-market AR suites such as Quadient AR and Versapay, plus core AR modules inside accounting platforms.
+Small B2B service firms should shortlist AR tools that automate reminders, offer self-service payment portals, integrate with Xero or QuickBooks, and give real-time invoice status. In 2026, the strongest options for 5 to 30-person agencies are productized AR services, mid-market AR suites such as Quadient AR and Versapay, plus core AR modules inside accounting platforms.
 
 ## What problem are small B2B service firms actually trying to solve with AR automation?
 
@@ -43,7 +43,7 @@ Three categories worth knowing.
 
 ### What is the difference between productized AR services and standalone software?
 
-Productized services like NeatFlow install a custom AR Recovery System into the client's existing stack (Xero, QuickBooks, Gmail, Slack), configure it for the client's specific cadence and tone, and hand over ownership. The client pays a setup fee and owns the system. No recurring license.
+Productized services install a custom AR Recovery System into the client's existing stack (Xero, QuickBooks, Gmail, Slack), configure it for the client's specific cadence and tone, and hand over ownership. The client pays a setup fee and owns the system. No recurring license.
 
 Standalone AR software like Quadient AR (formerly YayPay) and Versapay is enterprise-grade SaaS. Powerful, but priced for mid-market and above, with onboarding cycles measured in months and recurring fees of €500 to €2,000+ per month.
 
@@ -80,30 +80,6 @@ Typical monthly cost
 Best for
 
 </th></tr><tr><td>
-
-NeatFlow AR Recovery
-
-</td><td>
-
-5-30
-
-</td><td>
-
-Reminders + tracking + tone-matched escalation
-
-</td><td>
-
-Xero, QuickBooks, Gmail
-
-</td><td>
-
-€0 (one-time setup €1.5k-2.5k)
-
-</td><td>
-
-Owner-operated B2B services
-
-</td></tr><tr><td>
 
 Quadient AR (YayPay)
 

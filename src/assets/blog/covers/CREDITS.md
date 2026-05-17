@@ -15,3 +15,7 @@ Pexels does not require attribution but credit is appreciated.
 | `quickbooks-vs-xero-vs-freshbooks-for-ar-in-service-businesses` | [Lukas Blazek](https://www.pexels.com/@goumbik) | [link](https://www.pexels.com/photo/turned-on-laptop-computer-577195/) |
 | `the-hidden-cost-of-chasing-invoices-in-a-small-b2b-agency` | [www.kaboompics.com](https://www.pexels.com/@karola-g) | [link](https://www.pexels.com/photo/a-person-tearing-apart-a-piece-of-paper-7681065/) |
 | `when-to-hire-an-ar-clerk-vs-automate-accounts-receivable` | [DTSoft Official](https://www.pexels.com/@dtsoft-official-798352825) | [link](https://www.pexels.com/photo/woman-working-on-computer-19125851/) |
+| `using-claude-to-draft-dora-article-30-contracts` | [Mikhail Nilov](https://www.pexels.com/@mikhail-nilov) | [link](https://www.pexels.com/photo/person-holding-black-pen-reviewing-a-document-7735699/) |
+| `generating-valid-xbrl-csv-for-eba-register-of-information` | [Tima Miroshnichenko](https://www.pexels.com/@tima-miroshnichenko) | [link](https://www.pexels.com/photo/business-data-printout-on-white-paper-6694560/) |
+| `dora-article-28-in-plain-english-for-saas-vendors` | [Masood Aslami](https://www.pexels.com/@masoodaslami) | [link](https://www.pexels.com/photo/ecb-tower-in-frankfurt-at-sunset-17163664/) |
+| `automating-compliance-work-with-llms-what-i-learned` | [dkomov](https://www.pexels.com/@dkomov) | [link](https://www.pexels.com/photo/ai-assisted-code-debugging-on-screen-display-34804018/) |

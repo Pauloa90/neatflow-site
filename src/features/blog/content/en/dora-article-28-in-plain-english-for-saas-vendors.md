@@ -4,7 +4,7 @@ heroImage:
   url: "../../../../assets/blog/covers/dora-article-28-in-plain-english-for-saas-vendors.jpg"
   alt: "The European Central Bank tower in Frankfurt at sunset"
 description: "A practical explainer of DORA Article 28 for SaaS vendors who just got asked by a bank client to demonstrate compliance. What the regulation actually requires from you, what it doesn't, and how to respond without panicking."
-pubDate: 2026-05-21
+pubDate: 2026-05-11
 author: "Paulo Albuquerque"
 metaTitle: "DORA Article 28 Explained for SaaS Vendors: 2026 Practical Guide"
 metaDescription: "What DORA Article 28 means for SaaS vendors selling to EU banks, insurers, or fintechs. Plain-English breakdown of obligations, common misconceptions, and how to respond to your bank client's compliance request."

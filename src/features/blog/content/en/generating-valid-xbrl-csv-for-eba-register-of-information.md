@@ -4,7 +4,7 @@ heroImage:
   url: "../../../../assets/blog/covers/generating-valid-xbrl-csv-for-eba-register-of-information.jpg"
   alt: "Top-down view of analytical data sheets and a laptop on a desk"
 description: "A technical walkthrough of generating a DORA Register of Information in xBRL-CSV format that actually passes EBA validation. Why Excel submissions get rejected, what the taxonomy expects, and how to validate locally with Arelle before you submit."
-pubDate: 2026-05-19
+pubDate: 2026-05-14
 author: "Paulo Albuquerque"
 metaTitle: "Valid xBRL-CSV for the EBA Register of Information: A 2026 Guide"
 metaDescription: "How to generate a DORA Register of Information in xBRL-CSV that passes EBA validation. Taxonomy structure, common rejection causes, and local Arelle validation."

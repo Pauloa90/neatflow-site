@@ -4,7 +4,7 @@ heroImage:
   url: "../../../../assets/blog/covers/automating-compliance-work-with-llms-what-i-learned.jpg"
   alt: "AI-assisted code on a screen, debugging session in progress"
 description: "An honest retrospective on using large language models to automate parts of EU regulatory compliance work — DORA, GDPR, ISO mapping. Where the LLM saved real time, where it failed, and what got packaged into a tool versus what stayed manual."
-pubDate: 2026-05-23
+pubDate: 2026-05-08
 author: "Paulo Albuquerque"
 metaTitle: "Automating Compliance Work with LLMs: 6-Month Honest Retrospective"
 metaDescription: "Six months of using LLMs to automate EU compliance work — DORA, GDPR, framework mapping. What worked, what failed, and the build-in-public path to a tool."

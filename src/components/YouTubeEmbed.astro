@@ -1,0 +1,74 @@
+---
+/**
+ * Lite YouTube embed (facade pattern).
+ * Shows the video thumbnail + a play button and only loads the heavy
+ * YouTube iframe after the user clicks — keeps the page fast and the
+ * thumbnail sharp. Uses youtube-nocookie for privacy.
+ */
+interface Props {
+  id: string; // YouTube video id, e.g. "h-i18kry7G4"
+  title: string; // accessible label + caption
+}
+
+const { id, title } = Astro.props;
+const thumb = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+const thumbFallback = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+const watchUrl = `https://www.youtube.com/watch?v=${id}`;
+---
+
+<figure class="my-0">
+  <div
+    class="yt-lite group relative aspect-video w-full overflow-hidden rounded-lg border bg-muted"
+    data-id={id}
+  >
+    <img
+      src={thumb}
+      onerror={`this.onerror=null;this.src='${thumbFallback}'`}
+      alt={`Thumbnail: ${title}`}
+      loading="lazy"
+      width="1280"
+      height="720"
+      class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+    />
+    <button
+      type="button"
+      aria-label={`Play video: ${title}`}
+      class="yt-lite-play absolute inset-0 flex items-center justify-center bg-black/20 transition-colors duration-200 group-hover:bg-black/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+    >
+      <span
+        class="flex h-16 w-16 items-center justify-center rounded-2xl bg-red-600 shadow-lg transition-transform duration-200 group-hover:scale-110"
+      >
+        <svg viewBox="0 0 24 24" fill="white" class="ml-1 h-7 w-7" aria-hidden="true">
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+      </span>
+    </button>
+    <!-- No-JS / SEO fallback -->
+    <noscript>
+      <a
+        href={watchUrl}
+        class="absolute inset-0 z-10"
+        aria-label={`Watch on YouTube: ${title}`}></a>
+    </noscript>
+  </div>
+  <figcaption class="mt-2 text-sm text-muted-foreground">{title}</figcaption>
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.yt-lite').forEach((el) => {
+    const btn = el.querySelector<HTMLButtonElement>('.yt-lite-play');
+    btn?.addEventListener('click', () => {
+      const id = el.getAttribute('data-id');
+      if (!id) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+      iframe.title = 'YouTube video player';
+      iframe.allow =
+        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.className = 'absolute inset-0 h-full w-full';
+      el.innerHTML = '';
+      el.appendChild(iframe);
+    });
+  });
+</script>

@@ -5,3 +5,8 @@ dist
 .env.local
 *.log
 .astro
+
+# Local dashboard / Claude artifacts (not part of the site)
+STATUS.md
+.claude/
+scripts/update_status.py

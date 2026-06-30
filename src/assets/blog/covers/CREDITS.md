@@ -19,3 +19,7 @@ Pexels does not require attribution but credit is appreciated.
 | `generating-valid-xbrl-csv-for-eba-register-of-information` | [Tima Miroshnichenko](https://www.pexels.com/@tima-miroshnichenko) | [link](https://www.pexels.com/photo/business-data-printout-on-white-paper-6694560/) |
 | `dora-article-28-in-plain-english-for-saas-vendors` | [Masood Aslami](https://www.pexels.com/@masoodaslami) | [link](https://www.pexels.com/photo/ecb-tower-in-frankfurt-at-sunset-17163664/) |
 | `automating-compliance-work-with-llms-what-i-learned` | [dkomov](https://www.pexels.com/@dkomov) | [link](https://www.pexels.com/photo/ai-assisted-code-debugging-on-screen-display-34804018/) |
+| `what-is-the-model-context-protocol-and-why-i-started-using-it` | [ready made](https://www.pexels.com/@readymade) | [link](https://www.pexels.com/photo/usb-c-cable-on-white-surface-3921713/) |
+| `setting-up-a-gmail-mcp-server-for-claude` | [Alicia Christin Gerald](https://www.pexels.com/@alicia-christin-gerald-1447380217) | [link](https://www.pexels.com/photo/close-up-of-hands-typing-on-laptop-keyboard-indoors-36175215/) |
+| `n8n-vs-make-vs-zapier-in-2026-which-i-actually-reach-for` | [Christina Morillo](https://www.pexels.com/@divinetechygirl) | [link](https://www.pexels.com/photo/white-dry-erase-board-with-red-diagram-1181311/) |
+| `running-local-llms-on-a-normal-laptop-in-2026` | [Daniil Komov](https://www.pexels.com/@dkomov) | [link](https://www.pexels.com/photo/focused-coding-session-with-laptop-and-coffee-34803969/) |

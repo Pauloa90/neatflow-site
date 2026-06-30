@@ -98,5 +98,45 @@
     "pexels_url": "https://www.pexels.com/photo/woman-working-on-computer-19125851/",
     "bytes": 214069,
     "downloaded_at": "2026-05-02T14:23:28.572Z"
+  },
+  {
+    "slug": "what-is-the-model-context-protocol-and-why-i-started-using-it",
+    "query": "usb-c cable ports connection technology",
+    "pexels_id": 3921713,
+    "photographer": "ready made",
+    "photographer_url": "https://www.pexels.com/@readymade",
+    "pexels_url": "https://www.pexels.com/photo/usb-c-cable-on-white-surface-3921713/",
+    "bytes": 84131,
+    "downloaded_at": "2026-06-04T03:43:31.389Z"
+  },
+  {
+    "slug": "setting-up-a-gmail-mcp-server-for-claude",
+    "query": "person using laptop email inbox",
+    "pexels_id": 36175215,
+    "photographer": "Alicia Christin Gerald",
+    "photographer_url": "https://www.pexels.com/@alicia-christin-gerald-1447380217",
+    "pexels_url": "https://www.pexels.com/photo/close-up-of-hands-typing-on-laptop-keyboard-indoors-36175215/",
+    "bytes": 157421,
+    "downloaded_at": "2026-06-04T03:43:31.793Z"
+  },
+  {
+    "slug": "n8n-vs-make-vs-zapier-in-2026-which-i-actually-reach-for",
+    "query": "workflow automation flowchart connected",
+    "pexels_id": 1181311,
+    "photographer": "Christina Morillo",
+    "photographer_url": "https://www.pexels.com/@divinetechygirl",
+    "pexels_url": "https://www.pexels.com/photo/white-dry-erase-board-with-red-diagram-1181311/",
+    "bytes": 117887,
+    "downloaded_at": "2026-06-04T03:43:32.121Z"
+  },
+  {
+    "slug": "running-local-llms-on-a-normal-laptop-in-2026",
+    "query": "laptop computer code dark desk",
+    "pexels_id": 34803969,
+    "photographer": "Daniil Komov",
+    "photographer_url": "https://www.pexels.com/@dkomov",
+    "pexels_url": "https://www.pexels.com/photo/focused-coding-session-with-laptop-and-coffee-34803969/",
+    "bytes": 160455,
+    "downloaded_at": "2026-06-04T03:43:32.727Z"
   }
 ]

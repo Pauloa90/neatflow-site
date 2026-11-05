@@ -1,0 +1,397 @@
+---
+// Vitrine dos projetos: lista à esquerda; à direita uma demonstração que se mexe sozinha E que o visitante controla
+// (arrastar nós, segurar para falar, deslizar a linha do tempo, rodar comandos). Dados inventados; o quadro avisa.
+const projects = [
+  { id: 'brain', name: 'The Brain', line: 'A 3D map of everything I have thought, asked AI and built.',
+    body: 'I use AI all day, in many different tools, and good ideas kept getting lost between them. So I built a map that reads my chats, notes and projects, groups them by subject, and shows what is alive and what has stalled.', state: 'Working, still improving', hint: 'Drag the circles. The lines follow.' },
+  { id: 'wizz', name: 'Wizz', line: 'Dictation that never leaves my computer.',
+    body: 'I speak instead of typing. A speech model on my own machine turns my voice into text in Portuguese or English and nothing is sent anywhere. It also lowers whatever is playing while I talk, so a video never leaks into the recording.', state: 'Working, I use it every day', hint: 'Press and hold the button, then let go.' },
+  { id: 'editor', name: 'A video editor that edits me', line: 'Two recordings in, a finished cut out.',
+    body: 'I record my face and my screen as two separate files and a script assembles the cut with captions and sound. The goal: publish a video in an afternoon instead of a week.', state: 'In progress', hint: 'Scrub the final cut with your mouse.' },
+  { id: 'dash', name: 'My own dashboard', line: 'The numbers I care about, in one place.',
+    body: 'A Home Assistant dashboard for what I used to check in five different apps: energy, my channels, my mail. Next to it, a 3D printer that makes small parts for the house.', state: 'In progress', hint: 'Hover the bars. Click the printer to restart it.' },
+  { id: 'local', name: 'A local AI workstation', line: 'Models running on my own graphics card.',
+    body: 'I test what is actually useful without paying a subscription for every experiment. It is where I try ideas before I write about them, like the post on running local models on a normal laptop.', state: 'Ongoing', hint: 'Pick a prompt and watch it answer.' },
+];
+const nodes = [
+  { id: 'pod', l: 'Podcast', x: 90, y: 120, r: 19 }, { id: 'inv', l: 'Invoice flow', x: 170, y: 80, r: 25 }, { id: 'web', l: 'Website', x: 270, y: 110, r: 17 },
+  { id: 'cl', l: 'Client A', x: 190, y: 175, r: 29, hit: true }, { id: 'not', l: 'Notes', x: 120, y: 200, r: 14 }, { id: 'cou', l: 'Course', x: 300, y: 205, r: 21, dash: true },
+  { id: 'ide', l: 'Ideas', x: 340, y: 75, r: 11 }, { id: 'lab', l: 'Lab', x: 250, y: 240, r: 12 },
+];
+const edges = [['pod', 'inv'], ['inv', 'web'], ['inv', 'cl'], ['pod', 'not'], ['not', 'cl'], ['cl', 'cou'], ['web', 'cou'], ['web', 'ide'], ['cl', 'lab']];
+const N = Object.fromEntries(nodes.map((n) => [n.id, n]));
+---
+
+<div class="pj" data-showcase>
+  <div class="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.15fr)] gap-x-12 gap-y-8 items-start">
+    <div role="tablist" aria-label="Projects" aria-orientation="vertical">
+      {projects.map((p, i) => (
+        <div class="border-t border-border last:border-b">
+          <button type="button" role="tab" id={`pj-tab-${p.id}`} aria-controls={`pj-panel-${p.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-id={p.id} data-cursor="Open"
+            class="pj-tab w-full text-left py-4 pr-2 group flex items-baseline justify-between gap-4">
+            <span>
+              <span class="pj-name block text-xl md:text-2xl font-semibold leading-tight group-hover:text-primary transition-colors">{p.name}</span>
+              <span class="block mt-1 text-sm text-muted-foreground">{p.line}</span>
+            </span>
+            <span class="pj-bar hidden md:block shrink-0 h-1 w-10 bg-border rounded-full overflow-hidden" aria-hidden="true"><span class="block h-full w-full bg-primary origin-left scale-x-0"></span></span>
+          </button>
+          <div class="pj-detail" hidden={i !== 0}>
+            <p class="pb-2 leading-relaxed text-[15px]">{p.body}</p>
+            <p class="pb-2 inline-flex items-center gap-2 text-sm text-muted-foreground"><span class="inline-block size-2 rounded-full bg-primary"></span>{p.state}</p>
+            <p class="pb-5 text-sm text-primary font-medium">↳ {p.hint}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="pj-tilt lg:sticky lg:top-24" style="perspective:1100px">
+      <div class="pj-stage relative aspect-[16/11] w-full rounded-xl border border-border bg-card overflow-hidden shadow-xl">
+        <span class="pj-glare pointer-events-none absolute inset-0 z-20 opacity-0 transition-opacity duration-300" style="background:radial-gradient(420px circle at var(--gx,50%) var(--gy,50%), rgba(255,255,255,.28), transparent 60%)"></span>
+        <span class="absolute right-3 top-2 z-10 text-[11px] text-muted-foreground">Illustration · try it, it's interactive</span>
+
+        <!-- The Brain -->
+        <div id="pj-panel-brain" role="tabpanel" aria-labelledby="pj-tab-brain" class="pj-demo" data-active aria-hidden="false">
+          <svg viewBox="0 0 400 275" class="size-full select-none touch-none" data-brain>
+            <g stroke="var(--border)" stroke-width="1.4" fill="none">
+              {edges.map(([a, b]) => <line data-edge data-a={a} data-b={b} x1={N[a].x} y1={N[a].y} x2={N[b].x} y2={N[b].y} />)}
+            </g>
+            {nodes.map((n, i) => (
+              <g>
+                <circle data-node data-id={n.id} data-cursor="Drag" class={`pj-p pj-d${i % 3} cursor-grab`} cx={n.x} cy={n.y} r={n.r}
+                  fill={n.hit ? 'var(--primary)' : 'var(--card)'} fill-opacity={n.hit ? 0.2 : 1} stroke={n.hit ? 'var(--primary)' : 'var(--foreground)'} stroke-width="1.6" stroke-dasharray={n.dash ? '4 4' : undefined} />
+                <text data-label data-for={n.id} x={n.x} y={n.y + n.r + 13} font-size="10.5" text-anchor="middle" fill="var(--foreground)" font-weight={n.hit ? 700 : 400} pointer-events="none">{n.l}</text>
+              </g>
+            ))}
+            <circle class="pj-ring" cx="340" cy="75" r="11" fill="none" stroke="var(--primary)" stroke-width="2" pointer-events="none"/>
+            <g class="pj-search" pointer-events="none"><rect x="20" y="16" width="170" height="26" rx="13" fill="var(--background)" stroke="var(--border)"/><text class="pj-type" x="36" y="33" font-size="12" fill="var(--foreground)">where is Client A?</text></g>
+          </svg>
+        </div>
+
+        <!-- Wizz -->
+        <div id="pj-panel-wizz" role="tabpanel" aria-labelledby="pj-tab-wizz" class="pj-demo" aria-hidden="true" data-wizz>
+          <div class="absolute inset-0 grid grid-cols-[1fr_auto] gap-6 p-7 pt-9">
+            <div class="flex flex-col justify-center gap-4">
+              <div class="flex items-center gap-4">
+                <span class="pj-mic relative grid size-12 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+                <div class="flex h-12 flex-1 items-center gap-[3px]" aria-hidden="true">
+                  {Array.from({ length: 30 }).map((_, i) => <span class="pj-w block w-full rounded-full bg-primary" style={`animation-delay:${(i * 0.09).toFixed(2)}s`}></span>)}
+                </div>
+              </div>
+              <div class="rounded-md border border-border bg-background p-4 text-[15px] min-h-[3.4rem]"><span class="pj-line block overflow-hidden whitespace-nowrap" data-line>Remind me to send the report on Friday.</span></div>
+              <button type="button" data-hold data-cursor="Hold" class="self-start rounded-full border border-border bg-background px-5 py-2 text-sm font-medium transition-colors hover:border-primary active:bg-primary active:text-primary-foreground select-none touch-none">Hold to speak</button>
+            </div>
+            <div class="flex w-24 flex-col items-center justify-center gap-2 text-xs text-muted-foreground">
+              <span>Other apps</span>
+              <span class="relative h-32 w-3 overflow-hidden rounded-full bg-border"><span class="pj-vol absolute inset-x-0 bottom-0 h-full origin-bottom rounded-full bg-primary" data-vol></span></span>
+              <span data-volnum>100%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editor -->
+        <div id="pj-panel-editor" role="tabpanel" aria-labelledby="pj-tab-editor" class="pj-demo" aria-hidden="true" data-editor>
+          <div class="absolute inset-0 p-7 pt-9 flex flex-col justify-center gap-3 text-xs">
+            <div class="relative"><span class="text-muted-foreground">Face</span>
+              <div class="relative mt-1 h-7 rounded bg-muted"><span class="pj-clip absolute inset-y-0 left-[2%] w-[38%] rounded bg-primary/70"></span><span class="pj-clip absolute inset-y-0 left-[46%] w-[30%] rounded bg-primary/70" style="animation-delay:.3s"></span></div></div>
+            <div class="relative"><span class="text-muted-foreground">Screen</span>
+              <div class="relative mt-1 h-7 rounded bg-muted"><span class="pj-clip absolute inset-y-0 left-[18%] w-[44%] rounded bg-foreground/55" style="animation-delay:.15s"></span><span class="pj-clip absolute inset-y-0 left-[66%] w-[26%] rounded bg-foreground/55" style="animation-delay:.45s"></span></div></div>
+            <div class="my-1 flex items-center gap-2 text-muted-foreground"><span class="h-px flex-1 bg-border"></span>assembled by a script<span class="h-px flex-1 bg-border"></span></div>
+            <div class="relative"><span class="text-muted-foreground">Final cut · <b data-clipname class="font-semibold text-foreground">drag across it</b></span>
+              <div class="relative mt-1 h-10 overflow-hidden rounded bg-muted cursor-ew-resize touch-none" data-final data-cursor="Scrub">
+                <span data-cut class="pj-cut absolute inset-y-0 left-0 w-[22%] bg-primary/80"></span><span data-cut class="pj-cut absolute inset-y-0 left-[22%] w-[30%] bg-foreground/60" style="animation-delay:.25s"></span><span data-cut class="pj-cut absolute inset-y-0 left-[52%] w-[20%] bg-primary/80" style="animation-delay:.5s"></span><span data-cut class="pj-cut absolute inset-y-0 left-[72%] w-[28%] bg-foreground/60" style="animation-delay:.75s"></span>
+                <span class="pj-play absolute inset-y-0 w-0.5 bg-destructive" data-play></span>
+              </div>
+              <div class="mt-1 flex gap-1" aria-hidden="true">{Array.from({ length: 9 }).map((_, i) => <span class="pj-cap h-2 flex-1 rounded-sm bg-border" style={`animation-delay:${(i * 0.5 + 1).toFixed(1)}s`}></span>)}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard -->
+        <div id="pj-panel-dash" role="tabpanel" aria-labelledby="pj-tab-dash" class="pj-demo" aria-hidden="true" data-dash>
+          <div class="absolute inset-0 grid grid-cols-3 gap-3 p-6 pt-9 content-center">
+            <div class="rounded-md border border-border bg-background p-3"><p class="text-[11px] text-muted-foreground">Energy today</p>
+              <svg viewBox="0 0 100 50" class="mt-2 w-full" aria-hidden="true"><path class="pj-draw" d="M2,42 C15,40 20,18 34,22 S55,6 68,14 S88,30 98,12" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" pathLength="1"/></svg></div>
+            <div class="rounded-md border border-border bg-background p-3"><p class="text-[11px] text-muted-foreground">Views · <b data-tip class="font-semibold text-foreground">hover a bar</b></p>
+              <div class="mt-2 flex h-[50px] items-end gap-1">{[['Mon', 35], ['Tue', 55], ['Wed', 40], ['Thu', 70], ['Fri', 60], ['Sat', 90], ['Sun', 75]].map(([d, h], i) => <span data-bar data-day={d} data-val={Number(h) * 14} class="pj-bar2 flex-1 origin-bottom rounded-sm bg-primary hover:bg-foreground transition-colors" style={`height:${h}%;animation-delay:${(i * 0.12).toFixed(2)}s`}></span>)}</div></div>
+            <div class="rounded-md border border-border bg-background p-3"><p class="text-[11px] text-muted-foreground">Unread mail</p>
+              <div class="mt-2 grid grid-cols-6 gap-1" aria-hidden="true">{Array.from({ length: 12 }).map((_, i) => <span class="pj-dot size-3 rounded-full bg-foreground/50" style={`animation-delay:${(i * 0.15).toFixed(2)}s`}></span>)}</div></div>
+            <button type="button" data-printer data-cursor="Restart" class="col-span-3 rounded-md border border-border bg-background p-3 text-left hover:border-primary transition-colors"><p class="text-[11px] text-muted-foreground">3D printer · printing a cable clip · <span class="text-primary">click to restart</span></p>
+              <div class="mt-2 flex flex-col-reverse gap-[3px]" aria-hidden="true">{Array.from({ length: 6 }).map((_, i) => <span class="pj-layer h-1.5 rounded-sm bg-primary/80" style={`width:${70 - i * 6}%;margin-inline:auto;animation-delay:${(i * 0.55).toFixed(2)}s`}></span>)}</div></button>
+          </div>
+        </div>
+
+        <!-- Local AI -->
+        <div id="pj-panel-local" role="tabpanel" aria-labelledby="pj-tab-local" class="pj-demo" aria-hidden="true" data-local>
+          <div class="absolute inset-0 grid grid-cols-[1fr_auto] gap-5 p-6 pt-9">
+            <div class="flex flex-col gap-3">
+              <div class="min-h-[9.5rem] flex-1 rounded-md bg-[#0e1420] p-4 font-mono text-[12.5px] leading-6 text-[#cfe3ff] overflow-hidden" data-term>
+                <p class="text-[#7d93c4]">$ run a model on my own machine</p>
+                <p data-prompt>&gt; Summarise what I did this week</p>
+                <div data-out>
+                  <p class="pj-t1 overflow-hidden whitespace-nowrap">Shipped the video editor script.</p>
+                  <p class="pj-t2 overflow-hidden whitespace-nowrap">Fixed the volume bug in Wizz.</p>
+                  <p class="pj-t3 overflow-hidden whitespace-nowrap">Wrote half of the next post.</p>
+                </div>
+                <p class="pj-caret inline-block h-4 w-2 translate-y-0.5 bg-[#cfe3ff]"></p>
+              </div>
+              <div class="flex flex-wrap gap-2 text-xs">
+                <button type="button" data-run="week" data-cursor="Run" class="rounded-full border border-border bg-background px-3 py-1 hover:border-primary">Summarise my week</button>
+                <button type="button" data-run="reply" data-cursor="Run" class="rounded-full border border-border bg-background px-3 py-1 hover:border-primary">Draft a reply</button>
+                <button type="button" data-run="rag" data-cursor="Run" class="rounded-full border border-border bg-background px-3 py-1 hover:border-primary">Explain RAG in a line</button>
+              </div>
+            </div>
+            <div class="flex w-20 flex-col items-center justify-center gap-2 text-xs text-muted-foreground">
+              <span>Graphics card</span>
+              <span class="relative h-32 w-3 overflow-hidden rounded-full bg-border"><span class="pj-gpu absolute inset-x-0 bottom-0 h-full origin-bottom rounded-full bg-primary" data-gpu></span></span>
+              <span>no subscription</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .pj-demo { position: absolute; inset: 0; opacity: 0; transition: opacity .45s ease; pointer-events: none; }
+  .pj-demo[data-active] { opacity: 1; pointer-events: auto; }
+  .pj-demo * { animation-play-state: paused; }
+  .pj-demo[data-active] * { animation-play-state: running; }
+  .pj-detail[hidden] { display: none; }
+  .pj-tab[aria-selected='true'] .pj-name { color: var(--primary); }
+  .pj-tab[aria-selected='true'] .pj-bar span { animation: pj-fill var(--pj-dur, 8s) linear forwards; }
+  [data-held] .pj-tab[aria-selected='true'] .pj-bar span { animation: none; transform: scaleX(1); }
+  @keyframes pj-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .pj-stage { transition: transform .25s ease-out; will-change: transform; transform-style: preserve-3d; }
+
+  /* The Brain */
+  .pj-p { transform-box: fill-box; transform-origin: center; animation: pj-pulse 3.2s ease-in-out infinite; transition: opacity .2s; }
+  .pj-d1 { animation-delay: .8s; } .pj-d2 { animation-delay: 1.6s; }
+  @keyframes pj-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+  [data-brain][data-focus] [data-node], [data-brain][data-focus] [data-label], [data-brain][data-focus] [data-edge] { opacity: .18; }
+  [data-brain][data-focus] .is-n { opacity: 1 !important; }
+  [data-brain] [data-node].is-drag { cursor: grabbing; animation: none; }
+  .pj-ring { transform-box: fill-box; transform-origin: center; animation: pj-ring 3.2s ease-out infinite; }
+  @keyframes pj-ring { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(3); opacity: 0; } }
+  .pj-type { clip-path: inset(0 100% 0 0); animation: pj-typed 6s steps(18) infinite; }
+  @keyframes pj-typed { 0% { clip-path: inset(0 100% 0 0); } 40%,90% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 100% 0 0); } }
+
+  /* Wizz */
+  .pj-w { height: 100%; transform-origin: center; animation: pj-wave 6s ease-in-out infinite; }
+  @keyframes pj-wave { 0%,12%,92%,100% { transform: scaleY(.08); } 20% { transform: scaleY(.9); } 30% { transform: scaleY(.3); } 40% { transform: scaleY(1); } 55% { transform: scaleY(.45); } 70% { transform: scaleY(.85); } 82% { transform: scaleY(.25); } }
+  .pj-line { width: 0; animation: pj-say 6s steps(38) infinite; }
+  @keyframes pj-say { 0%,12% { width: 0; } 80%,92% { width: 100%; } 100% { width: 0; } }
+  .pj-vol { animation: pj-duck 6s ease-in-out infinite; }
+  @keyframes pj-duck { 0%,8% { transform: scaleY(1); } 14%,84% { transform: scaleY(.15); } 94%,100% { transform: scaleY(1); } }
+  .pj-mic::after { content: ''; position: absolute; inset: -6px; border-radius: 999px; border: 2px solid var(--primary); animation: pj-ring 1.6s ease-out infinite; }
+  [data-mode='hold'] .pj-w, [data-mode='hold'] .pj-vol { animation: none !important; }
+  [data-mode='hold'] .pj-line { animation: none !important; width: 100% !important; }
+  [data-mode='hold'] .pj-mic::after { animation: none; opacity: 0; }
+  [data-mode='hold'][data-speaking] .pj-mic::after { animation: pj-ring 1.2s ease-out infinite; opacity: 1; }
+
+  /* Editor */
+  .pj-clip { transform-origin: left; animation: pj-in 6s ease-out infinite; }
+  .pj-cut { transform-origin: left; transform: scaleX(0); animation: pj-cutin 6s ease-out infinite; transition: filter .15s; }
+  @keyframes pj-in { 0% { transform: scaleX(0); opacity: 0; } 10%,100% { transform: scaleX(1); opacity: 1; } }
+  @keyframes pj-cutin { 0%,25% { transform: scaleX(0); } 40%,100% { transform: scaleX(1); } }
+  .pj-play { left: 0; animation: pj-scrub 6s linear infinite; }
+  @keyframes pj-scrub { 0%,35% { left: 0; opacity: 0; } 40% { opacity: 1; } 95% { left: 99%; opacity: 1; } 100% { left: 99%; opacity: 0; } }
+  .pj-cap { animation: pj-capon 6s steps(1) infinite; }
+  @keyframes pj-capon { 0%,45% { background: var(--border); } 46%,100% { background: var(--primary); } }
+  [data-mode='hold'] .pj-play { animation: none !important; opacity: 1; }
+  [data-mode='hold'] .pj-cut { animation: none !important; transform: scaleX(1); filter: saturate(.5) brightness(1.08); }
+  [data-mode='hold'] .pj-cut.is-on { filter: none; outline: 2px solid var(--foreground); outline-offset: -2px; }
+
+  /* Dashboard */
+  .pj-draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: pj-line 6s ease-in-out infinite; }
+  @keyframes pj-line { 0% { stroke-dashoffset: 1; } 45%,90% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }
+  .pj-bar2 { animation: pj-grow 6s ease-out infinite; }
+  @keyframes pj-grow { 0% { transform: scaleY(0); } 30%,90% { transform: scaleY(1); } 100% { transform: scaleY(0); } }
+  .pj-dot { animation: pj-blink 3s ease-in-out infinite; }
+  @keyframes pj-blink { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
+  .pj-layer { transform: scaleX(0); animation: pj-lay 6s ease-out infinite; }
+  @keyframes pj-lay { 0% { transform: scaleX(0); } 12%,90% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+  [data-mode='hold'] .pj-layer { animation: pj-lay1 3.6s ease-out forwards; }
+  @keyframes pj-lay1 { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+
+  /* Local AI */
+  .pj-t1,.pj-t2,.pj-t3 { width: 0; }
+  .pj-t1 { animation: pj-l1 7s steps(32) infinite; } .pj-t2 { animation: pj-l2 7s steps(30) infinite; } .pj-t3 { animation: pj-l3 7s steps(30) infinite; }
+  @keyframes pj-l1 { 0%,8% { width: 0; } 28%,100% { width: 32ch; } }
+  @keyframes pj-l2 { 0%,30% { width: 0; } 50%,100% { width: 30ch; } }
+  @keyframes pj-l3 { 0%,52% { width: 0; } 72%,100% { width: 30ch; } }
+  .pj-caret { animation: pj-blink2 1s steps(1) infinite; }
+  @keyframes pj-blink2 { 50% { opacity: 0; } }
+  .pj-gpu { animation: pj-load 7s ease-in-out infinite; transition: transform .4s; }
+  @keyframes pj-load { 0%,8% { transform: scaleY(.08); } 20%,75% { transform: scaleY(.85); } 90%,100% { transform: scaleY(.1); } }
+  [data-mode='hold'] .pj-gpu { animation: none !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pj-demo *, .pj-tab .pj-bar span { animation: none !important; }
+    .pj-line, .pj-t1, .pj-t2, .pj-t3 { width: 100% !important; } .pj-type { clip-path: none; } .pj-draw { stroke-dashoffset: 0; }
+    .pj-cut, .pj-layer, .pj-bar2 { transform: none !important; }
+  }
+</style>
+
+<script>
+  const pt = (svg: SVGSVGElement, e: PointerEvent) => { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(svg.getScreenCTM()!.inverse()); };
+
+  function brain(root: HTMLElement) {
+    const svg = root.querySelector<SVGSVGElement>('[data-brain]')!;
+    const nodes = [...svg.querySelectorAll<SVGCircleElement>('[data-node]')];
+    const edges = [...svg.querySelectorAll<SVGLineElement>('[data-edge]')];
+    const labels = [...svg.querySelectorAll<SVGTextElement>('[data-label]')];
+    const byId = (id: string) => nodes.find((n) => n.dataset.id === id)!;
+    const neigh = (id: string) => new Set(edges.filter((e) => e.dataset.a === id || e.dataset.b === id).flatMap((e) => [e.dataset.a!, e.dataset.b!]));
+    const focus = (id: string | null) => {
+      if (!id) { svg.removeAttribute('data-focus'); return; }
+      const ns = neigh(id); ns.add(id); svg.setAttribute('data-focus', '');
+      nodes.forEach((n) => n.classList.toggle('is-n', ns.has(n.dataset.id!)));
+      labels.forEach((l) => l.classList.toggle('is-n', ns.has(l.dataset.for!)));
+      edges.forEach((e) => e.classList.toggle('is-n', e.dataset.a === id || e.dataset.b === id));
+    };
+    const move = (id: string, x: number, y: number) => {
+      const c = byId(id); c.setAttribute('cx', String(x)); c.setAttribute('cy', String(y));
+      const r = Number(c.getAttribute('r'));
+      const l = labels.find((t) => t.dataset.for === id)!; l.setAttribute('x', String(x)); l.setAttribute('y', String(y + r + 13));
+      edges.forEach((e) => { if (e.dataset.a === id) { e.setAttribute('x1', String(x)); e.setAttribute('y1', String(y)); } if (e.dataset.b === id) { e.setAttribute('x2', String(x)); e.setAttribute('y2', String(y)); } });
+    };
+    let drag: string | null = null;
+    nodes.forEach((n) => {
+      n.addEventListener('pointerenter', () => { if (!drag) focus(n.dataset.id!); });
+      n.addEventListener('pointerleave', () => { if (!drag) focus(null); });
+      n.addEventListener('pointerdown', (e) => { drag = n.dataset.id!; n.classList.add('is-drag'); n.setPointerCapture(e.pointerId); focus(drag); });
+      n.addEventListener('pointermove', (e) => { if (drag !== n.dataset.id) return; const p = pt(svg, e); move(drag, Math.max(20, Math.min(380, p.x)), Math.max(60, Math.min(255, p.y))); });
+      const end = () => { if (drag) { byId(drag).classList.remove('is-drag'); drag = null; focus(null); } };
+      n.addEventListener('pointerup', end); n.addEventListener('pointercancel', end);
+    });
+  }
+
+  function wizz(root: HTMLElement) {
+    const panel = root.querySelector<HTMLElement>('[data-wizz]')!;
+    const btn = panel.querySelector<HTMLButtonElement>('[data-hold]')!;
+    const bars = [...panel.querySelectorAll<HTMLElement>('.pj-w')];
+    const line = panel.querySelector<HTMLElement>('[data-line]')!, vol = panel.querySelector<HTMLElement>('[data-vol]')!, num = panel.querySelector<HTMLElement>('[data-volnum]')!;
+    const phrase = 'Remind me to send the report on Friday.';
+    let speaking = false, n = 0, level = 1, raf = 0;
+    const heights = bars.map(() => 0.08);
+    const tick = () => {
+      const target = speaking ? 0.15 : 1; level += (target - level) * 0.16;
+      vol.style.transform = `scaleY(${level.toFixed(3)})`; num.textContent = Math.round(level * 100) + '%';
+      if (speaking && n < phrase.length) { n = Math.min(phrase.length, n + 0.45); line.textContent = phrase.slice(0, Math.floor(n)); }
+      bars.forEach((b, i) => { const t = speaking ? 0.2 + Math.random() * 0.8 * (0.5 + 0.5 * Math.sin(performance.now() / 140 + i * 0.6)) : 0.08; heights[i] += (t - heights[i]) * 0.35; b.style.transform = `scaleY(${heights[i].toFixed(3)})`; });
+      raf = requestAnimationFrame(tick);
+    };
+    const press = () => { panel.dataset.mode = 'hold'; panel.setAttribute('data-speaking', ''); if (!speaking) { speaking = true; n = 0; line.textContent = ''; cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); } };
+    const release = () => { speaking = false; panel.removeAttribute('data-speaking'); };
+    btn.addEventListener('pointerdown', (e) => { btn.setPointerCapture(e.pointerId); press(); });
+    btn.addEventListener('pointerup', release); btn.addEventListener('pointercancel', release);
+    btn.addEventListener('keydown', (e) => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); press(); } });
+    btn.addEventListener('keyup', (e) => { if (e.key === ' ' || e.key === 'Enter') release(); });
+  }
+
+  function editor(root: HTMLElement) {
+    const panel = root.querySelector<HTMLElement>('[data-editor]')!;
+    const track = panel.querySelector<HTMLElement>('[data-final]')!, play = panel.querySelector<HTMLElement>('[data-play]')!, name = panel.querySelector<HTMLElement>('[data-clipname]')!;
+    const cuts = [...panel.querySelectorAll<HTMLElement>('[data-cut]')];
+    const names = ['Intro · face', 'Demo · screen', 'Explain · face', 'Result · screen'], edges = [0, 0.22, 0.52, 0.72, 1];
+    let down = false;
+    const set = (e: PointerEvent) => {
+      panel.dataset.mode = 'hold';
+      const r = track.getBoundingClientRect(), x = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+      play.style.left = x * 99 + '%';
+      const i = edges.findIndex((v, k) => x >= v && x <= edges[k + 1]);
+      cuts.forEach((c, k) => c.classList.toggle('is-on', k === i)); name.textContent = names[i] ?? '';
+    };
+    track.addEventListener('pointerdown', (e) => { down = true; track.setPointerCapture(e.pointerId); set(e); });
+    track.addEventListener('pointermove', (e) => { if (down || e.pointerType === 'mouse') set(e); });
+    track.addEventListener('pointerup', () => (down = false));
+  }
+
+  function dash(root: HTMLElement) {
+    const panel = root.querySelector<HTMLElement>('[data-dash]')!;
+    const tip = panel.querySelector<HTMLElement>('[data-tip]')!;
+    panel.querySelectorAll<HTMLElement>('[data-bar]').forEach((b) => {
+      b.addEventListener('pointerenter', () => (tip.textContent = `${b.dataset.day}: ${Number(b.dataset.val).toLocaleString('en-GB')}`));
+      b.addEventListener('pointerleave', () => (tip.textContent = 'hover a bar'));
+    });
+    panel.querySelector<HTMLElement>('[data-printer]')!.addEventListener('click', () => {
+      panel.dataset.mode = 'hold';
+      panel.querySelectorAll<HTMLElement>('.pj-layer').forEach((l) => { l.style.animation = 'none'; void l.offsetWidth; l.style.animation = ''; });
+    });
+  }
+
+  function local(root: HTMLElement) {
+    const panel = root.querySelector<HTMLElement>('[data-local]')!;
+    const out = panel.querySelector<HTMLElement>('[data-out]')!, prompt = panel.querySelector<HTMLElement>('[data-prompt]')!;
+    const gpu = panel.querySelector<HTMLElement>('[data-gpu]')!;
+    const runs: Record<string, [string, string[]]> = {
+      week: ['Summarise what I did this week', ['Shipped the video editor script.', 'Fixed the volume bug in Wizz.', 'Wrote half of the next post.']],
+      reply: ['Draft a polite reply to Sam', ['Hi Sam, thanks for the note.', 'I can send it to you by Friday.', 'Does that work for you?']],
+      rag: ['Explain RAG in one line', ['It looks the answer up in your own files first,', 'then writes the reply using what it found.']],
+    };
+    let job = 0;
+    panel.querySelectorAll<HTMLButtonElement>('[data-run]').forEach((b) => b.addEventListener('click', async () => {
+      const [q, lines] = runs[b.dataset.run!]; const my = ++job;
+      panel.dataset.mode = 'hold'; prompt.textContent = '> ' + q; out.innerHTML = ''; gpu.style.transform = 'scaleY(.9)';
+      for (const l of lines) {
+        const p = document.createElement('p'); out.appendChild(p);
+        for (let i = 1; i <= l.length; i++) { if (my !== job) return; p.textContent = l.slice(0, i); await new Promise((r) => setTimeout(r, 22)); }
+      }
+      if (my === job) gpu.style.transform = 'scaleY(.1)';
+    }));
+  }
+
+  function tilt(root: HTMLElement) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !matchMedia('(pointer: fine)').matches) return;
+    const wrap = root.querySelector<HTMLElement>('.pj-tilt')!, stage = root.querySelector<HTMLElement>('.pj-stage')!, glare = root.querySelector<HTMLElement>('.pj-glare')!;
+    wrap.addEventListener('pointermove', (e) => {
+      const r = stage.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      stage.style.transform = `rotateY(${((x - 0.5) * 7).toFixed(2)}deg) rotateX(${((0.5 - y) * 5).toFixed(2)}deg)`;
+      stage.style.setProperty('--gx', x * 100 + '%'); stage.style.setProperty('--gy', y * 100 + '%'); glare.style.opacity = '1';
+    });
+    wrap.addEventListener('pointerleave', () => { stage.style.transform = ''; glare.style.opacity = '0'; });
+  }
+
+  function setup() {
+    document.querySelectorAll<HTMLElement>('[data-showcase]').forEach((root) => {
+      if (root.dataset.ready) return;
+      root.dataset.ready = '1';
+      const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role=tab]')];
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let idx = 0, timer: number | undefined, held = false;
+      const DUR = 8000;
+      root.style.setProperty('--pj-dur', DUR + 'ms');
+      const show = (i: number, focus = false) => {
+        idx = (i + tabs.length) % tabs.length;
+        tabs.forEach((t, k) => {
+          const on = k === idx, id = t.dataset.id!;
+          t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1;
+          t.parentElement!.querySelector<HTMLElement>('.pj-detail')!.hidden = !on;
+          const panel = root.querySelector<HTMLElement>('#pj-panel-' + id)!;
+          if (on) panel.setAttribute('data-active', ''); else panel.removeAttribute('data-active');
+          panel.setAttribute('aria-hidden', String(!on));
+          const fill = t.querySelector<HTMLElement>('.pj-bar span'); if (fill) { fill.style.animation = 'none'; void fill.offsetWidth; fill.style.animation = ''; }
+        });
+        if (focus) tabs[idx].focus();
+        schedule();
+      };
+      const schedule = () => { clearTimeout(timer); if (reduce || held) return; timer = window.setTimeout(() => show(idx + 1), DUR); };
+      const hold = () => { held = true; clearTimeout(timer); root.setAttribute('data-held', ''); };
+      tabs.forEach((t, k) => {
+        t.addEventListener('click', () => { hold(); show(k); });
+        t.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); hold(); show(idx + 1, true); }
+          if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); hold(); show(idx - 1, true); }
+        });
+      });
+      const stage = root.querySelector('.pj-stage')!;
+      stage.addEventListener('pointerdown', hold);
+      stage.addEventListener('pointerenter', () => clearTimeout(timer));
+      stage.addEventListener('pointerleave', () => schedule());
+      brain(root); wizz(root); editor(root); dash(root); local(root); tilt(root);
+      show(0);
+    });
+  }
+  document.addEventListener('astro:page-load', setup);
+</script>

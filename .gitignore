@@ -10,3 +10,9 @@ dist
 STATUS.md
 .claude/
 scripts/update_status.py
+
+# YouTube analytics pulls — private channel data, never commit
+youtube-analytics-raw.json
+analise-canal-youtube.html
+roteiro-short-painel.html
+short-painel-*.mp4

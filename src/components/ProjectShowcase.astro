@@ -3,7 +3,7 @@
 // (arrastar nós, segurar para falar, deslizar a linha do tempo, rodar comandos). Dados inventados; o quadro avisa.
 const projects = [
   { id: 'brain', name: 'The Brain', line: 'A 3D map of everything I have thought, asked AI and built.',
-    body: 'I use AI all day, in many different tools, and good ideas kept getting lost between them. So I built a map that reads my chats, notes and projects, groups them by subject, and shows what is alive and what has stalled.', state: 'Working, still improving', hint: 'Drag the circles. The lines follow.' },
+    body: 'I use AI all day, in many different tools, and good ideas kept getting lost between them. So I built a map that reads my chats, notes and projects, groups them by subject, and shows what is alive and what has stalled.', state: 'Working, still improving', hint: 'Drag to spin it. Click a star to fly to it.' },
   { id: 'wizz', name: 'Wizz', line: 'Dictation that never leaves my computer.',
     body: 'I speak instead of typing. A speech model on my own machine turns my voice into text in Portuguese or English and nothing is sent anywhere. It also lowers whatever is playing while I talk, so a video never leaks into the recording.', state: 'Working, I use it every day', hint: 'Press and hold the button, then let go.' },
   { id: 'editor', name: 'A video editor that edits me', line: 'Two recordings in, a finished cut out.',
@@ -13,13 +13,6 @@ const projects = [
   { id: 'local', name: 'A local AI workstation', line: 'Models running on my own graphics card.',
     body: 'I test what is actually useful without paying a subscription for every experiment. It is where I try ideas before I write about them, like the post on running local models on a normal laptop.', state: 'Ongoing', hint: 'Pick a prompt and watch it answer.' },
 ];
-const nodes = [
-  { id: 'pod', l: 'Podcast', x: 90, y: 120, r: 19 }, { id: 'inv', l: 'Invoice flow', x: 170, y: 80, r: 25 }, { id: 'web', l: 'Website', x: 270, y: 110, r: 17 },
-  { id: 'cl', l: 'Client A', x: 190, y: 175, r: 29, hit: true }, { id: 'not', l: 'Notes', x: 120, y: 200, r: 14 }, { id: 'cou', l: 'Course', x: 300, y: 205, r: 21, dash: true },
-  { id: 'ide', l: 'Ideas', x: 340, y: 75, r: 11 }, { id: 'lab', l: 'Lab', x: 250, y: 240, r: 12 },
-];
-const edges = [['pod', 'inv'], ['inv', 'web'], ['inv', 'cl'], ['pod', 'not'], ['not', 'cl'], ['cl', 'cou'], ['web', 'cou'], ['web', 'ide'], ['cl', 'lab']];
-const N = Object.fromEntries(nodes.map((n) => [n.id, n]));
 ---
 
 <div class="pj" data-showcase>
@@ -51,20 +44,12 @@ const N = Object.fromEntries(nodes.map((n) => [n.id, n]));
 
         <!-- The Brain -->
         <div id="pj-panel-brain" role="tabpanel" aria-labelledby="pj-tab-brain" class="pj-demo" data-active aria-hidden="false">
-          <svg viewBox="0 0 400 275" class="size-full select-none touch-none" data-brain>
-            <g stroke="var(--border)" stroke-width="1.4" fill="none">
-              {edges.map(([a, b]) => <line data-edge data-a={a} data-b={b} x1={N[a].x} y1={N[a].y} x2={N[b].x} y2={N[b].y} />)}
-            </g>
-            {nodes.map((n, i) => (
-              <g>
-                <circle data-node data-id={n.id} data-cursor="Drag" class={`pj-p pj-d${i % 3} cursor-grab`} cx={n.x} cy={n.y} r={n.r}
-                  fill={n.hit ? 'var(--primary)' : 'var(--card)'} fill-opacity={n.hit ? 0.2 : 1} stroke={n.hit ? 'var(--primary)' : 'var(--foreground)'} stroke-width="1.6" stroke-dasharray={n.dash ? '4 4' : undefined} />
-                <text data-label data-for={n.id} x={n.x} y={n.y + n.r + 13} font-size="10.5" text-anchor="middle" fill="var(--foreground)" font-weight={n.hit ? 700 : 400} pointer-events="none">{n.l}</text>
-              </g>
-            ))}
-            <circle class="pj-ring" cx="340" cy="75" r="11" fill="none" stroke="var(--primary)" stroke-width="2" pointer-events="none"/>
-            <g class="pj-search" pointer-events="none"><rect x="20" y="16" width="170" height="26" rx="13" fill="var(--background)" stroke="var(--border)"/><text class="pj-type" x="36" y="33" font-size="12" fill="var(--foreground)">where is Client A?</text></g>
-          </svg>
+          <div class="b3 absolute inset-0 select-none touch-none" data-brain3d data-cursor="Drag">
+            <canvas class="absolute inset-0 size-full cursor-grab"></canvas>
+            <div class="pointer-events-none absolute inset-0 overflow-hidden" data-labels></div>
+            <div class="pointer-events-none absolute left-4 top-4 z-10 flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 font-mono text-[11.5px] text-[#e9eaff] backdrop-blur"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span data-search>where is Client A?</span></div>
+            <div class="pointer-events-none absolute bottom-3 left-4 z-10 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[10px] text-[#8d90b5]"><span><i class="b3-dot" style="background:#a9d6ff"></i>active</span><span><i class="b3-dot" style="background:#ffd699"></i>warm</span><span><i class="b3-dot" style="background:#ff7b6b"></i>stalled</span><span><i class="b3-dot" style="background:#d0b3ff"></i>idea</span><span><i class="b3-dot" style="background:#9fe0b0"></i>done</span></div>
+          </div>
         </div>
 
         <!-- Wizz -->
@@ -153,6 +138,12 @@ const N = Object.fromEntries(nodes.map((n) => [n.id, n]));
 </div>
 
 <style is:global>
+  .b3 { background: radial-gradient(120% 90% at 50% 45%, #15163a 0%, #090a17 70%); }
+  .b3-label { position: absolute; left: 0; top: 0; white-space: nowrap; font: 500 11px/1.2 'Inter', system-ui, sans-serif; color: #c9cbf0; text-shadow: 0 0 6px #090a17, 0 0 2px #090a17; transition: opacity .25s, color .2s; will-change: transform; }
+  .b3-label.is-dom { font: 700 10px/1.2 'JetBrains Mono', ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; color: #e9eaff; }
+  .b3-label.is-on { color: #fff; font-weight: 700; }
+  .b3-dot { display: inline-block; width: 6px; height: 6px; border-radius: 9px; margin-right: 4px; vertical-align: 1px; box-shadow: 0 0 6px currentColor; }
+  [data-brain3d][data-nogl]::after { content: 'Your browser blocked 3D here.'; position: absolute; inset: 0; display: grid; place-items: center; color: #8d90b5; font-size: 13px; }
   .pj-demo { position: absolute; inset: 0; opacity: 0; transition: opacity .45s ease; pointer-events: none; }
   .pj-demo[data-active] { opacity: 1; pointer-events: auto; }
   .pj-demo * { animation-play-state: paused; }
@@ -234,37 +225,12 @@ const N = Object.fromEntries(nodes.map((n) => [n.id, n]));
 </style>
 
 <script>
-  const pt = (svg: SVGSVGElement, e: PointerEvent) => { const p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(svg.getScreenCTM()!.inverse()); };
 
-  function brain(root: HTMLElement) {
-    const svg = root.querySelector<SVGSVGElement>('[data-brain]')!;
-    const nodes = [...svg.querySelectorAll<SVGCircleElement>('[data-node]')];
-    const edges = [...svg.querySelectorAll<SVGLineElement>('[data-edge]')];
-    const labels = [...svg.querySelectorAll<SVGTextElement>('[data-label]')];
-    const byId = (id: string) => nodes.find((n) => n.dataset.id === id)!;
-    const neigh = (id: string) => new Set(edges.filter((e) => e.dataset.a === id || e.dataset.b === id).flatMap((e) => [e.dataset.a!, e.dataset.b!]));
-    const focus = (id: string | null) => {
-      if (!id) { svg.removeAttribute('data-focus'); return; }
-      const ns = neigh(id); ns.add(id); svg.setAttribute('data-focus', '');
-      nodes.forEach((n) => n.classList.toggle('is-n', ns.has(n.dataset.id!)));
-      labels.forEach((l) => l.classList.toggle('is-n', ns.has(l.dataset.for!)));
-      edges.forEach((e) => e.classList.toggle('is-n', e.dataset.a === id || e.dataset.b === id));
-    };
-    const move = (id: string, x: number, y: number) => {
-      const c = byId(id); c.setAttribute('cx', String(x)); c.setAttribute('cy', String(y));
-      const r = Number(c.getAttribute('r'));
-      const l = labels.find((t) => t.dataset.for === id)!; l.setAttribute('x', String(x)); l.setAttribute('y', String(y + r + 13));
-      edges.forEach((e) => { if (e.dataset.a === id) { e.setAttribute('x1', String(x)); e.setAttribute('y1', String(y)); } if (e.dataset.b === id) { e.setAttribute('x2', String(x)); e.setAttribute('y2', String(y)); } });
-    };
-    let drag: string | null = null;
-    nodes.forEach((n) => {
-      n.addEventListener('pointerenter', () => { if (!drag) focus(n.dataset.id!); });
-      n.addEventListener('pointerleave', () => { if (!drag) focus(null); });
-      n.addEventListener('pointerdown', (e) => { drag = n.dataset.id!; n.classList.add('is-drag'); n.setPointerCapture(e.pointerId); focus(drag); });
-      n.addEventListener('pointermove', (e) => { if (drag !== n.dataset.id) return; const p = pt(svg, e); move(drag, Math.max(20, Math.min(380, p.x)), Math.max(60, Math.min(255, p.y))); });
-      const end = () => { if (drag) { byId(drag).classList.remove('is-drag'); drag = null; focus(null); } };
-      n.addEventListener('pointerup', end); n.addEventListener('pointercancel', end);
-    });
+  function brain(root: HTMLElement, hold: () => void) {
+    const host = root.querySelector<HTMLElement>('[data-brain3d]');
+    if (!host) return;
+    const panel = host.closest<HTMLElement>('.pj-demo')!;
+    import('../scripts/brain3d').then(({ mountBrain }) => mountBrain(host, { isActive: () => panel.hasAttribute('data-active'), onInteract: hold }));
   }
 
   function wizz(root: HTMLElement) {
@@ -389,7 +355,7 @@ const N = Object.fromEntries(nodes.map((n) => [n.id, n]));
       stage.addEventListener('pointerdown', hold);
       stage.addEventListener('pointerenter', () => clearTimeout(timer));
       stage.addEventListener('pointerleave', () => schedule());
-      brain(root); wizz(root); editor(root); dash(root); local(root); tilt(root);
+      brain(root, hold); wizz(root); editor(root); dash(root); local(root); tilt(root);
       show(0);
     });
   }
